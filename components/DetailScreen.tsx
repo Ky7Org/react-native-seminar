@@ -2,7 +2,8 @@ import {Alert, Button, FlatList, ScrollView, Text, TextInput, View} from "react-
 import React from "react";
 import {NavigationProp, Route} from "@react-navigation/native";
 import tailwind from "tailwind-rn";
-import {users} from "../constants";
+import {USER_DETAILS_SCREEN, users} from "../constants";
+
 
 type NavgiationType = {
     route: Route<any>;
@@ -10,7 +11,7 @@ type NavgiationType = {
 };
 
 export default function Detail({route, navigation}: NavgiationType) {
-    const {id, otherId} = route.params;
+    // const {id, otherId} = route.params;
 
     const confirm = () => {
         return Alert.alert(
@@ -54,5 +55,8 @@ export default function Detail({route, navigation}: NavgiationType) {
              confirm()
             }}
             title="Sum up"/>
+        <Button title="View detail" onPress={() => navigation.navigate(USER_DETAILS_SCREEN, {
+            username: "son"
+        })}/>
     </ScrollView>
 }

@@ -1,0 +1,1 @@
+export const DELETE_USER_BUTTON = "Delete Account"
