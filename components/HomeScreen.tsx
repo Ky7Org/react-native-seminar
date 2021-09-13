@@ -66,7 +66,6 @@ export default function Home({route, navigation}) {
 
                 <View style={tailwind('m-2')}>
                     <Button onPress={() => navigation.push(DETAILS_SCREEN)} title="Yêu thích">
-
                     </Button>
                 </View>
 

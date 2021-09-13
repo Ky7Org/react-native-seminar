@@ -1,17 +1,65 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Button, Image, ScrollView, Text, View} from "react-native";
-import styles from "./styles/index.css";
+import React from 'react';
+import {Button, Image, ScrollView, View, Text} from "react-native";
 import tailwind from "tailwind-rn";
-import {BUTTON_UPDATE_PROFILE_TITLE} from "./constants";
-import {UPDATE_DETAILS_SCREEN} from "../../../../constants";
+import {BUTTON_ADMIN} from "./constants";
+import {CalendarIcon, ChartBarIcon, DeviceMobileIcon, LocationMarkerIcon, MailIcon} from "react-native-heroicons/solid";
 
 
-export default function Index({navigation, routes}){
+export default function UserDetailScreen({navigation, routes}){
         return (
-            <ScrollView bounces={false} style={tailwind('flex')}>
+            <ScrollView bounces={false} style={tailwind('flex mt-10 bg-white')}>
+                <View style={tailwind('flex justify-center items-center divide-y')}>
+                    <View style={tailwind('rounded-full bg-gray-50 flex flex-row justify-evenly')}>
+                        <View style={tailwind('rounded-sm w-16')}>
+                            <Button onPress={() => {}} title={BUTTON_ADMIN}/>
+                        </View>
 
-                <View style={tailwind('items-center overflow-hidden bg-white')}>
+                        <View style={tailwind('rounded-sm w-16' )}>
+                            <Button onPress={() => {}} title={BUTTON_ADMIN}/>
+                        </View>
+                    </View>
+                    <View style={tailwind('font-bold')}>
+                        <Text style={tailwind('font-bold text-2xl')}>Tien</Text>
+                    </View>
+                    <View style={tailwind('border-8 border-transparent')}>
+                        <Image style={tailwind('rounded-full w-20 h-20')} source={require("../../../../assets/miku_profile.jpg")}></Image>
+                    </View>
+
+                    <View style={tailwind('flex flex-row flex-wrap w-full p-2 border-gray-900')}>
+                        <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
+                            <DeviceMobileIcon color="#07FF8A" size={31} style={tailwind('mr-2')}/>
+                            <Text>123</Text>
+                        </View>
+                        <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
+                            <MailIcon color="#07FF8A" size={31} style={tailwind('mr-2')}/>
+                            <Text>123</Text>
+                        </View>
+                        <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
+                            <LocationMarkerIcon color="#07FF8A" size={31} style={tailwind('mr-2')}/>
+                            <Text>123</Text>
+                        </View>
+                    </View>
+
+
+                    <View style={tailwind('flex flex-row flex-wrap w-full p-2 border-gray-900')}>
+                        <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
+                            <CalendarIcon color="#07FF8A" size={31} style={tailwind('mr-2')}/>
+                            <Text>123</Text>
+                        </View>
+                        <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
+                            <ChartBarIcon color="#07FF8A" size={31} style={tailwind('mr-2')}/>
+                            <Text>123</Text>
+                        </View>
+                        <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
+                            <LocationMarkerIcon color="#07FF8A" size={31} style={tailwind('mr-2')}/>
+                            <Text>123</Text>
+                        </View>
+                    </View>
+                </View>
+
+
+
+                {/*<View style={tailwind('items-center overflow-hidden bg-white')}>
                     <Image source={require('../../../../assets/miku_profile.jpg')}
                             style={tailwind('rounded-full h-24 w-24 flex items-center justify-center')}
                     >
@@ -37,7 +85,8 @@ export default function Index({navigation, routes}){
                     <Button title={BUTTON_UPDATE_PROFILE_TITLE} onPress={() => navigation.push(UPDATE_DETAILS_SCREEN,
                         {username: "sondeptrai"}
                     )} />
-                </View>
+                </View>*/}
             </ScrollView>
         );
 }
+
