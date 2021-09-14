@@ -12,7 +12,7 @@ import {
     DETAILS_SCREEN,
     HOME_SCREEN,
     UPDATE_DETAILS_SCREEN,
-    USER_DETAILS_SCREEN
+    USER_DETAILS_SCREEN, USER_LIST_SCREEN
 } from "./constants";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import UserDetail from "./components/Admin/ManageUser/UserDetailScreen";
@@ -21,6 +21,7 @@ import DeleteUser from "./components/Admin/ManageUser/DeleteUserScreen";
 import CreateUser from "./components/Admin/ManageUser/CreateUserScreen";
 
 import {createDrawerNavigator} from "@react-navigation/drawer";
+import UserListScreen from "./components/Admin/ManageUser/UserListScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -107,6 +108,25 @@ const CreateAccountStack = () => {
     );
 }
 
+const UserListStack = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName={USER_LIST_SCREEN}
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+        <Stack.Screen
+                name={USER_LIST_SCREEN}
+                component={UserListScreen}
+                options={{
+                    title: 'User list'
+                }}
+        />
+        </Stack.Navigator>
+    );
+}
+
 export default function App() {
     return (
         <NavigationContainer>
@@ -116,6 +136,7 @@ export default function App() {
                 <Drawer.Screen name={HOME_SCREEN} component={HomeStack}/>
                 <Drawer.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
                 <Drawer.Screen name={CREATE_ACCOUNT_SCREEN} component={CreateAccountStack}/>
+                <Drawer.Screen name={USER_LIST_SCREEN} component={UserListStack}/>
             </Drawer.Navigator>
         </NavigationContainer>
     );
