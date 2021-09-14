@@ -4,8 +4,7 @@ export const DEMO_SCREEN = 'Demo';
 export const USER_DETAILS_SCREEN = "User Details"
 export const UPDATE_DETAILS_SCREEN = "Update"
 export const DELETE_DETAILS_SCREEN = "Delete"
-
-
+export const LOGIN_SCREEN =  "Login"
 export const BASE = "http://nhentai.net";
 export const READ = "http://t.nhentai.net";
 export const HEADERS = {

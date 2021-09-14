@@ -1,15 +1,16 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import 'react-native-gesture-handler';
 import Home from "./components/HomeScreen";
 import Detail from "./components/DetailScreen";
-import {DETAILS_SCREEN, HOME_SCREEN, USER_DETAILS_SCREEN} from "./constants";
+import {DETAILS_SCREEN, HOME_SCREEN, USER_DETAILS_SCREEN, LOGIN_SCREEN} from "./constants";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import UserDetail from "./components/Admin/ManageUser/UserDetailScreen";
-import {createDrawerNavigator} from "@react-navigation/drawer";
 import UserDetailScreen from "./components/Admin/ManageUser/UserDetailScreen";
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import LogInScreen from "./components/Admin/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,7 +23,6 @@ const HomeStack = () => {
                 headerShown: false
             }}
         >
-
             <Drawer.Screen
                 name={HOME_SCREEN}
                 component={Home}
@@ -43,21 +43,19 @@ const HomeStack = () => {
         </Drawer.Navigator>
     );
 };
-const UserDetailStack = () => {return (
-    <Drawer.Navigator
-        initialRouteName={USER_DETAILS_SCREEN}
-        screenOptions={{
-            headerShown: false
-        }}
-    >
-        <Drawer.Screen
-            name={USER_DETAILS_SCREEN}
-            component={UserDetailScreen}
-            options={{
-                title: 'User details'
+const UserDetailStack = () => {
+    return (
+        <Drawer.Navigator
+            initialRouteName={LOGIN_SCREEN}
+            screenOptions={{
+                headerShown: false
             }}
-        />
-    </Drawer.Navigator>)
+        >
+            <Drawer.Screen
+                name={LOGIN_SCREEN}
+                component={LogInScreen}
+            />
+        </Drawer.Navigator>)
 };
 
 export default function App() {
@@ -65,9 +63,12 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
                 headerShown: false
-            }}>
-                <Stack.Screen name={HOME_SCREEN} component={HomeStack}></Stack.Screen>
-                <Stack.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}></Stack.Screen>
+            }}
+            initialRouteName={LOGIN_SCREEN}
+            >
+                <Stack.Screen name={LOGIN_SCREEN} component={LogInScreen} />
+                <Stack.Screen name={HOME_SCREEN} component={HomeStack}/>
+                <Stack.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
