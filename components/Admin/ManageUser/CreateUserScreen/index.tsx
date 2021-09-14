@@ -12,7 +12,13 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import {DELETE_DETAILS_SCREEN, HOME_SCREEN, USER_DETAILS_SCREEN} from "../../../../constants";
+import {
+    BACKGROUND_COLOR,
+    BUTTON_COLOR,
+    DELETE_DETAILS_SCREEN,
+    HOME_SCREEN, TEXT_COLOR_WHITE,
+    USER_DETAILS_SCREEN
+} from "../../../../constants";
 import tailwind from "tailwind-rn";
 
 export default function CreateUserScreen({navigation}) {
@@ -76,9 +82,9 @@ export default function CreateUserScreen({navigation}) {
 const styles = StyleSheet.create({
     textInput: {
         ...tailwind('rounded-full w-full h-16 bg-white mt-8 mr-8 ml-3 border-2 border-green-400'),
-        backgroundColor: '#002333',
+        backgroundColor: BACKGROUND_COLOR,
         paddingLeft: 30,
-        color: '#fff',
+        color: TEXT_COLOR_WHITE,
     },
     container: {
         flex: 1,
@@ -95,11 +101,11 @@ const styles = StyleSheet.create({
     },
     buttonCreate: {
         ...tailwind('rounded-full w-full h-20 bg-white mt-8 ml-3 border-2 border-green-400'),
-        backgroundColor: '#07FF8A',
+        backgroundColor: BUTTON_COLOR,
         justifyContent: "center",
     },
     scrollView: {
-        backgroundColor: '#002333'
+        backgroundColor: BACKGROUND_COLOR
     },
     header: {
         marginLeft: 20

@@ -7,6 +7,12 @@ export const DELETE_DETAILS_SCREEN = "Delete"
 export const CREATE_ACCOUNT_SCREEN = "Create account"
 export const USER_LIST_SCREEN = "User list"
 
+//css constant
+export const BUTTON_COLOR = "#07FF8A"
+export const BACKGROUND_COLOR = "#002333"
+export const TEXT_COLOR_WHITE = "#fff";
+
+
 export const BASE = "http://nhentai.net";
 export const READ = "http://t.nhentai.net";
 export const HEADERS = {
