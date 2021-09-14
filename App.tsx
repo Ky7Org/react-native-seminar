@@ -127,6 +127,15 @@ const UserListStack = () => {
     );
 }
 
+// const UserListStack = () => {
+//     return (
+//         <Stack.Navigator>
+//             initialRouteName={USER_LIST_SCREEN}
+//             screenOptions
+//         </Stack.Navigator>
+//     );
+// }
+
 export default function App() {
     return (
         <NavigationContainer>
