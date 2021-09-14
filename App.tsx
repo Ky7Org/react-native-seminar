@@ -1,24 +1,15 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import 'react-native-gesture-handler';
 import Home from "./components/HomeScreen";
 import Detail from "./components/DetailScreen";
-import {
-    DELETE_DETAILS_SCREEN,
-    DEMO_SCREEN,
-    DETAILS_SCREEN,
-    HOME_SCREEN,
-    UPDATE_DETAILS_SCREEN,
-    USER_DETAILS_SCREEN
-} from "./constants";
+import {DETAILS_SCREEN, HOME_SCREEN, UPDATE_DETAILS_SCREEN, USER_DETAILS_SCREEN} from "./constants";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import UserDetail from "./components/Admin/ManageUser/UserDetailScreen";
-import UpdateUser from "./components/Admin/ManageUser/EditUserScreen";
-import DeleteUser from "./components/Admin/ManageUser/DeleteUserScreen";
-import MikuDrawer from "./components/Drawer";
+import UserDetailScreen from "./components/Admin/ManageUser/UserDetailScreen";
 import {createDrawerNavigator} from "@react-navigation/drawer";
+import EditAccountUserScreen from "./components/Admin/ManageUser/EditUserScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,107 +17,57 @@ const Drawer = createDrawerNavigator();
 
 const HomeStack = () => {
     return (
-        <Stack.Navigator
-            initialRouteName={HOME_SCREEN}
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#0fefd3',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                },
-            }}
-        >
-
-            <Stack.Screen
+        <Drawer.Navigator screenOptions={{headerShown: false}}>
+            <Drawer.Screen
                 name={HOME_SCREEN}
                 component={Home}
                 options={{
                     title: 'Trang chủ'
                 }}
             />
-            <Stack.Screen
+            <Drawer.Screen
                 name={DETAILS_SCREEN}
                 component={Detail}/>
-            <Stack.Screen
+            <Drawer.Screen
                 name={USER_DETAILS_SCREEN}
                 component={UserDetail}
                 options={{
                     title: 'User details'
                 }}
             />
-        </Stack.Navigator>
+            <Drawer.Screen
+                name={UPDATE_DETAILS_SCREEN}
+                component={EditAccountUserScreen}
+                options={{
+                    title: 'Update user detail'
+                }}
+            />
+        </Drawer.Navigator>
     );
 };
-
-
 const UserDetailStack = () => {
     return (
-        <Stack.Navigator
-            initialRouteName={USER_DETAILS_SCREEN}
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#0fefd3',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                },
-            }}
+        <Drawer.Navigator initialRouteName={USER_DETAILS_SCREEN}
+                          screenOptions={{headerShown: false}}
         >
-            <Stack.Screen
+            <Drawer.Screen
                 name={USER_DETAILS_SCREEN}
-                component={UserDetail}
+                component={UserDetailScreen}
                 options={{
                     title: 'User details'
                 }}
             />
-            <Stack.Screen
-                name={UPDATE_DETAILS_SCREEN}
-                component={UpdateUser}
-                options={{
-                    title: 'Update user details'
-                }}
-            />
-            <Stack.Screen
-                name={DELETE_DETAILS_SCREEN}
-                component={DeleteUser}
-                options={{
-                    title: 'Delete user'
-                }}
-            />
-        </Stack.Navigator>
-    );
-}
+        </Drawer.Navigator>)
+};
 
 export default function App() {
     return (
         <NavigationContainer>
-            {/*<MikuDrawer/>*/}
-            <Drawer.Navigator>
-                <Drawer.Screen name={HOME_SCREEN} component={HomeStack}></Drawer.Screen>
-                <Drawer.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}></Drawer.Screen>
-            </Drawer.Navigator>
-            {/*<Tab.Navigator screenOptions={{headerShown: false}}>*/}
-            {/*    <Tab.Screen name={HOME_SCREEN} component={HomeStack}/>*/}
-
-            {/*    <Tab.Screen name={DETAILS_SCREEN} component={Detail}/>*/}
-
-            {/*    <Tab.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>*/}
-            {/*</Tab.Navigator>*/}
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name={HOME_SCREEN} component={HomeStack}/>
+                <Stack.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        'color': '#000',
-    },
-});
