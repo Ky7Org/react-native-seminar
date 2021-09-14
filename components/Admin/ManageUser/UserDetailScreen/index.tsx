@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import styles from "./styles/index.css";
+// import styles from "./styles/index.css";
 import tailwind from "tailwind-rn";
 import {BUTTON_ADMIN, BUTTON_EDIT_PROFILE, BUTTON_UPDATE_PROFILE_TITLE} from "./constants";
 import {UPDATE_DETAILS_SCREEN} from "../../../../constants";
