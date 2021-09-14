@@ -10,13 +10,13 @@ import {UPDATE_DETAILS_SCREEN} from "../../../../constants";
 export default function Index({navigation, routes}){
         return (
             <ScrollView bounces={false} style={tailwind('flex')}>
-
-                <View style={tailwind('items-center overflow-hidden bg-white')}>
-                    <Image source={require('../../../../assets/miku_profile.jpg')}
-                            style={tailwind('rounded-full h-24 w-24 flex items-center justify-center')}
-                    >
-                    </Image>
-
+                <View style={tailwind('items-center overflow-hidden bg-black')}>
+                    <View style={tailwind('border-8 border-transparent')}>
+                        <Image source={require('../../../../assets/miku_profile.jpg')}
+                               style={tailwind('rounded-full w-24 h-24')}
+                        >
+                        </Image>
+                    </View>
                 </View>
                 <View style={tailwind('py-5 text-center')}>
                     <Text style={tailwind('text-2l font-bold text-gray-800')}>
