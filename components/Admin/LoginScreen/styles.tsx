@@ -1,6 +1,4 @@
 import {StyleSheet} from "react-native";
-import {Simulate} from "react-dom/test-utils";
-
 
 const styles = StyleSheet.create({
     container: {
@@ -9,7 +7,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         fontFamily: 'Roboto',
-        fontWeight:  "bold",
+        fontWeight: "bold",
         padding: 8
     },
     input: {
@@ -37,14 +35,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     button: {
+        paddingTop: 13,
+        marginBottom: 100,
         backgroundColor: '#07FF8A',
         alignItems: 'center',
         width: '87.43%',
         borderRadius: 35.5,
         height: 62,
         fontSize: 25,
-        paddingTop: 13,
-        marginBottom: 100
     },
     textInButton: {
         fontSize: 25,
