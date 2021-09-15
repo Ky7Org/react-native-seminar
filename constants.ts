@@ -16,6 +16,7 @@ export type User = {
     username: string;
     fullname: string;
     role: string;
+    password: string;
 };
 
 export const users: User[] = [
@@ -23,15 +24,18 @@ export const users: User[] = [
         username: "admin",
         fullname: "Pham Cong Thanh",
         role: "Administrator",
+        password: '123456789',
     },
     {
         username: "admin2",
         fullname: "Lai Duc Hung",
         role: "Administrator",
+        password: '123456789',
     },
     {
         username: "user1",
         fullname: "NguyenTT",
         role: "User",
+        password: '123456789',
     },
 ];

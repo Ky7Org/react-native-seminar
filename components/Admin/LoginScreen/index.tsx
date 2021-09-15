@@ -1,16 +1,40 @@
-import React from 'react';
-import {Button, SafeAreaView, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {AsyncStorage, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Formik} from 'formik';
 import styles from "./styles";
+import {users} from "../../../constants";
 
-export const LogInScreen = (props) => {
+
+export const LogInScreen = () => {
+    const [isError, setIsError] = useState<boolean>(false)
+
+    const checkLogin = ({email, password}) => {
+        const loginUser = users.find(user =>
+            user.username === email
+        )
+        if (typeof loginUser === 'undefined') {
+            setIsError(true)
+        } else if (loginUser.password === password) {
+            let _storeUser = async () => {
+                try {
+                    await AsyncStorage.setItem('user', JSON.stringify(loginUser))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            _storeUser()
+        } else {
+            setIsError(true)
+        }
+    }
+
     return (
         <Formik
             initialValues={{email: '', password: ''}}
-            onSubmit={values => console.log(values)}
+            onSubmit={values => checkLogin(values)}
         >
             {({handleChange, handleBlur, handleSubmit, values}) => (
-                <SafeAreaView style={styles.container}>
+                <View style={styles.container}>
                     <View>
                         <Text style={styles.header}>
                             Sign In
@@ -33,6 +57,11 @@ export const LogInScreen = (props) => {
                         style={[styles.input, styles.inputPassword]}
                         secureTextEntry={true}
                     />
+                    <View>
+                        <Text style={styles.textError}>
+                            {isError ? 'Your Email or Password is invalid!' : ' '}
+                        </Text>
+                    </View>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={handleSubmit}
@@ -43,9 +72,9 @@ export const LogInScreen = (props) => {
                     </TouchableOpacity>
                     <View>
                         <Text style={styles.textQuestion}><Text>Don't have Account?</Text><Text
-                            style={styles.textCreate}>    Create Account</Text></Text>
+                            style={styles.textCreate}> Create Account</Text></Text>
                     </View>
-                </SafeAreaView>
+                </View>
             )}
         </Formik>
     )

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     inputPassword: {
-        marginBottom: 40,
+        marginBottom: 10,
         marginTop: 20
     },
     inputEmail: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     button: {
         paddingTop: 13,
-        marginBottom: 100,
+        marginBottom: 150,
         backgroundColor: '#07FF8A',
         alignItems: 'center',
         width: '87.43%',
@@ -60,6 +60,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         paddingLeft: 10
+    },
+    textError: {
+        color: '#ff0033',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 25
     }
 });
 
