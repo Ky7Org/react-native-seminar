@@ -22,6 +22,7 @@ import CreateUser from "./components/Admin/ManageUser/CreateUserScreen";
 
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import UserListScreen from "./components/Admin/ManageUser/UserListScreen";
+import DrawerContent from "./components/Drawer/DrawerContent";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -139,9 +140,12 @@ const UserListStack = () => {
 export default function App() {
     return (
         <NavigationContainer>
-            <Drawer.Navigator screenOptions={{
+            <Drawer.Navigator
+            screenOptions={{
                 headerShown: false
-            }}>
+            }}
+           drawerContent={props => <DrawerContent {...props}/>}
+            >
                 <Drawer.Screen name={HOME_SCREEN} component={HomeStack}/>
                 <Drawer.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
                 <Drawer.Screen name={CREATE_ACCOUNT_SCREEN} component={CreateAccountStack}/>

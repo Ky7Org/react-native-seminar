@@ -22,7 +22,6 @@ import {
 import tailwind from "tailwind-rn";
 
 export default function CreateUserScreen({navigation}) {
-
     return (
         <ScrollView bounces={false} style={styles.scrollView}>
             <View style={styles.container}>
