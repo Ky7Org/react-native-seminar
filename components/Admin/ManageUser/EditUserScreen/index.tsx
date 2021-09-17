@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {Modal, ModalContent} from "react-native-modals";
 import tailwind from "tailwind-rn";
@@ -7,12 +7,14 @@ import {DELETE_USER_BUTTON} from "./constants";
 import {DELETE_DETAILS_SCREEN} from "../../../../constants";
 
 export default function EditAccountUserScreen({navigation, routes}) {
+    const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
+    const [deleteModalVisible, setDeleteModalVisible] = useState<boolean>(false);
     return (
 
         <ScrollView bounces={false} style={tailwind('flex mt-10 bg-white')}>
 
             {/* Delete Modal*/}
-            {/*<Modal width={0.7} visible={true}
+            <Modal width={0.7} visible={deleteModalVisible}
                    rounded
                    actionsBordered
             >
@@ -42,12 +44,13 @@ export default function EditAccountUserScreen({navigation, routes}) {
                         </View>
                     </View>
                 </ModalContent>
-            </Modal>*/}
+            </Modal>
 
             {/* Verify Modal*/}
-            {/*<Modal width={0.7} visible={true}
+            <Modal width={0.7}
                    rounded
                    actionsBordered
+                   visible={verifyModalVisible}
             >
                 <ModalContent
                     style={{ backgroundColor: '#fff' }}
@@ -63,22 +66,27 @@ export default function EditAccountUserScreen({navigation, routes}) {
                         </View>
                         <View style={tailwind("w-11/12")}>
                             <TouchableOpacity style={tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 bg-blue-500 mb-4")}
-                                              onPress={() =>{}}
+                                              onPress={() =>{
+                                                  setVerifyModalVisible(false);
+                                                  setDeleteModalVisible(true);
+                                              }}
                             >
                                 <Text style={tailwind('text-white text-lg font-semibold')}>Delete</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 bg-gray-300")}
-                                              onPress={() =>{}}
+                                              onPress={() =>{
+                                                  setVerifyModalVisible(false);
+                                              }}
                             >
                                 <Text style={tailwind('text-black text-lg font-semibold')}>Cancel</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </ModalContent>
-            </Modal>*/}
+            </Modal>
 
             {/* Error Modal*/}
-            <Modal width={0.7} visible={true}
+            {/*<Modal width={0.7} visible={true}
                    rounded
                    actionsBordered
             >
@@ -107,14 +115,14 @@ export default function EditAccountUserScreen({navigation, routes}) {
                         </View>
                     </View>
                 </ModalContent>
-            </Modal>
+            </Modal>*/}
 
 
             <View style={styles.bigCircle}/>
             <View style={tailwind('flex items-center')}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity style={styles.buttonDelete}
-                                      onPress={() => navigation.push(DELETE_DETAILS_SCREEN, {username: "123"})}
+                                      onPress={() => {setVerifyModalVisible(true)}}
                     >
                         <Text style={styles.buttonText}>{DELETE_USER_BUTTON}</Text>
                     </TouchableOpacity>
