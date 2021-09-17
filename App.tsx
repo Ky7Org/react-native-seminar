@@ -4,12 +4,20 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import 'react-native-gesture-handler';
 import Home from "./components/HomeScreen";
 import Detail from "./components/DetailScreen";
-import {DETAILS_SCREEN, HOME_SCREEN, UPDATE_DETAILS_SCREEN, USER_DETAILS_SCREEN} from "./constants";
+import {
+    DELETE_DETAILS_SCREEN,
+    DETAILS_SCREEN,
+    HOME_SCREEN,
+    UPDATE_DETAILS_SCREEN,
+    USER_DETAILS_SCREEN
+} from "./constants";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import UserDetail from "./components/Admin/ManageUser/UserDetailScreen";
 import UserDetailScreen from "./components/Admin/ManageUser/UserDetailScreen";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import EditAccountUserScreen from "./components/Admin/ManageUser/EditUserScreen";
+import { ModalPortal } from 'react-native-modals';
+import DeleteModal from "./components/Admin/ManageUser/DeleteUserScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,7 +74,9 @@ export default function App() {
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name={HOME_SCREEN} component={HomeStack}/>
                 <Stack.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
+                <Stack.Screen name={DELETE_DETAILS_SCREEN} component={DeleteModal}/>
             </Stack.Navigator>
+            <ModalPortal/>
         </NavigationContainer>
     );
 }
