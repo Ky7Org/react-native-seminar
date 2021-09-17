@@ -1,27 +1,28 @@
-import React, {Component, useState} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import {
     Alert,
-    Button,
-    PixelRatio,
-    Pressable,
     ScrollView,
-    StyleSheet,
     Text,
     TextInput,
     TouchableOpacity,
     View
 } from "react-native";
+import tailwind from "tailwind-rn";
+import {styles} from './styles/index.css';
 import {
     BACKGROUND_COLOR,
     BUTTON_COLOR,
-    DELETE_DETAILS_SCREEN,
-    HOME_SCREEN, TEXT_COLOR_WHITE,
-    USER_DETAILS_SCREEN
+    TEXT_COLOR_WHITE,
 } from "../../../../constants";
-import tailwind from "tailwind-rn";
+import {useNavigation} from "@react-navigation/native";
 
-export default function CreateUserScreen({navigation}) {
+type IProps = {
+
+};
+
+export const CreateUserScreen: React.FC<IProps> = (props: IProps) => {
+
+    const navigation = useNavigation();
 
     return (
         <ScrollView bounces={false} style={styles.scrollView}>
@@ -79,42 +80,3 @@ export default function CreateUserScreen({navigation}) {
         </ScrollView>
     );
 }
-const styles = StyleSheet.create({
-    textInput: {
-        ...tailwind('rounded-full w-full h-16 bg-white mt-8 mr-8 ml-3 border-2 border-green-400'),
-        backgroundColor: BACKGROUND_COLOR,
-        paddingLeft: 30,
-        color: TEXT_COLOR_WHITE,
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        display: "flex",
-        flexDirection: 'column',
-        marginRight: 20
-    },
-    buttonText: {
-        color: "white",
-        fontSize: 14,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
-    buttonCreate: {
-        ...tailwind('rounded-full w-full h-20 bg-white mt-8 ml-3 border-2 border-green-400'),
-        backgroundColor: BUTTON_COLOR,
-        justifyContent: "center",
-    },
-    scrollView: {
-        backgroundColor: BACKGROUND_COLOR
-    },
-    header: {
-        marginLeft: 20
-    },
-    body: {
-        marginRight: 20,
-        marginLeft: 20
-    },
-    footer: {
-        marginRight: 10
-    }
-});

@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     FlatList,
     Image,
@@ -10,26 +10,39 @@ import {
     View,
     SafeAreaView
 } from "react-native";
-import {BACKGROUND_COLOR, TEXT_COLOR_WHITE, users} from "../../../../constants";
+import {
+    BACKGROUND_COLOR,
+    TEXT_COLOR_WHITE,
+} from "../../../../constants";
 import tailwind from "tailwind-rn";
-import {BUTTON_ADMIN, BUTTON_EDIT_PROFILE} from "../UserDetailScreen/constants";
+import {
+    BUTTON_ADMIN,
+    BUTTON_EDIT_PROFILE,
+} from "../UserDetailScreen/constants";
 import {SearchIcon} from "react-native-heroicons/solid";
+import {User} from "../../../../models/users.model";
 
+type IProps = {
+  users: User[];
+};
 
-export default function UserListScreen() {
+export const UserListScreen: React.FC<IProps> = (props: IProps) => {
+
+    const {
+        users,
+    } = props;
 
     const [search, setSearch] = useState("");
     const [dataSource, setDataSource] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
-        setDataSource(users),
-            setSearchResult(users)
+        setDataSource(users);
+        setSearchResult(users);
     }, [])
 
 
     const handleSearch = (searchValue) => {
-        console.log(searchValue)
         if (searchValue) {
             //search value is not blank
             const newData = dataSource.filter((user) => {
@@ -48,10 +61,9 @@ export default function UserListScreen() {
         }
     }
 
-    function getData() {
+    const getData = () => {
         setDataSource(users);
-    }
-
+    };
 
     const renderUser = ({item}) => (
         <View style={styles.userList}>
@@ -60,7 +72,7 @@ export default function UserListScreen() {
                     <View style={tailwind('flex-grow')}>
                         <View style={tailwind('border-2 rounded-full w-20 h-20')}>
                             <Image style={tailwind('rounded-full w-16 h-16 mx-2 my-2')}
-                                   source={require("../../../../assets/dead_pool.jpg")}></Image>
+                                   source={require("../../../../assets/dead_pool.jpg")} />
                         </View>
                         <View style={tailwind('flex -mt-16 ml-24')}>
                             <Text style={tailwind('text-base text-black font-bold')}>
@@ -79,12 +91,11 @@ export default function UserListScreen() {
     return (
         <SafeAreaView style={{flex: 1}}>
             <ScrollView bounces={false} style={tailwind('flex bg-white')}>
-                <View style={styles.bigCircle}></View>
+                <View style={styles.bigCircle} />
                 <View style={tailwind('flex items-center')}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity style={styles.buttonAdmin}
-                                          onPress={() => {
-                                          }}>
+                                          onPress={() => {}}>
                             <Text style={styles.buttonText}>{BUTTON_ADMIN}</Text>
                         </TouchableOpacity>
                     </View>
