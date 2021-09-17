@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-// import styles from "./styles/index.css";
+import {Button, Image, ScrollView, Text, View} from "react-native";
+import styles from "./styles/index.css";
 import tailwind from "tailwind-rn";
 import {BUTTON_ADMIN, BUTTON_EDIT_PROFILE, BUTTON_UPDATE_PROFILE_TITLE} from "./constants";
 import {UPDATE_DETAILS_SCREEN} from "../../../../constants";
 import {CalendarIcon, ChartBarIcon, DeviceMobileIcon, LocationMarkerIcon, MailIcon} from "react-native-heroicons/solid";
+import {RouteProp, useNavigation} from "@react-navigation/native";
 
+type IProps = {
+    route: RouteProp<any>;
+}
 
 export default function Index({navigation, routes}){
         return (
