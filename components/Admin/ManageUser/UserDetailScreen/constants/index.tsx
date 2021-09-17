@@ -1,1 +1,0 @@
-export const BUTTON_UPDATE_PROFILE_TITLE = "Update Profile"
