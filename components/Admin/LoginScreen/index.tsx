@@ -36,41 +36,43 @@ export const LogInScreen = () => {
             {({handleChange, handleBlur, handleSubmit, values}) => (
                 <View style={styles.container}>
                     <View>
-                        <Text style={styles.header}>
+                        <Text style={styles.headerContainer}>
                             Sign In
                         </Text>
                     </View>
-                    <TextInput
-                        onChangeText={handleChange('email')}
-                        onBlur={handleBlur('email')}
-                        value={values.email}
-                        placeholder={'E-mail'}
-                        placeholderTextColor={'#ffffff'}
-                        style={[styles.input, styles.inputEmail]}
-                    />
-                    <TextInput
-                        onChangeText={handleChange('password')}
-                        onBlur={handleBlur('password')}
-                        value={values.password}
-                        placeholder={'Password'}
-                        placeholderTextColor={'#ffffff'}
-                        style={[styles.input, styles.inputPassword]}
-                        secureTextEntry={true}
-                    />
-                    <View>
-                        <Text style={styles.textError}>
-                            {isError ? 'Your Email or Password is invalid!' : ' '}
-                        </Text>
+                    <View style={styles.containerForm}>
+                        <TextInput
+                            onChangeText={handleChange('email')}
+                            onBlur={handleBlur('email')}
+                            value={values.email}
+                            placeholder={'E-mail'}
+                            placeholderTextColor={'#ffffff'}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            onChangeText={handleChange('password')}
+                            onBlur={handleBlur('password')}
+                            value={values.password}
+                            placeholder={'Password'}
+                            placeholderTextColor={'#ffffff'}
+                            style={[styles.input, styles.inputPassword]}
+                            secureTextEntry={true}
+                        />
+                        <View>
+                            <Text style={styles.textError}>
+                                {isError ? 'Your Email or Password is invalid!' : ' '}
+                            </Text>
+                        </View>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={handleSubmit}
+                        >
+                            <Text style={styles.textInButton}>
+                                SIGN IN
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={handleSubmit}
-                    >
-                        <Text style={styles.textInButton}>
-                            SIGN IN
-                        </Text>
-                    </TouchableOpacity>
-                    <View>
+                    <View style={styles.createContainer}>
                         <Text style={styles.textQuestion}><Text>Don't have Account?</Text><Text
                             style={styles.textCreate}> Create Account</Text></Text>
                     </View>

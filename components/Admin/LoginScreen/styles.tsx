@@ -5,14 +5,18 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#002333',
         justifyContent: 'center',
-        alignItems: 'center',
         fontFamily: 'Roboto',
         fontWeight: "bold",
         padding: 8
     },
+    containerForm: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8
+    },
     input: {
         width: '87.43%',
-        height: '8%',
+        height: '12%',
         backgroundColor: '#002333',
         paddingLeft: 25,
         borderRadius: 35.5,
@@ -26,13 +30,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 20
     },
-    inputEmail: {
-        marginTop: 30
-    },
-    header: {
+    headerContainer: {
         fontSize: 35,
         color: '#fff',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        paddingLeft: 32,
+        alignContent: 'flex-start'
     },
     button: {
         paddingTop: 13,
@@ -59,13 +62,17 @@ const styles = StyleSheet.create({
         color: '#07FF8A',
         fontSize: 20,
         fontWeight: 'bold',
-        paddingLeft: 10
+        paddingLeft: 10,
+        alignSelf: 'flex-end'
     },
     textError: {
         color: '#ff0033',
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 25
+        marginBottom: 25,
+    },
+    createContainer: {
+        paddingLeft: 32
     }
 });
 
