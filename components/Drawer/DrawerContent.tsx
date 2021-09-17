@@ -9,10 +9,8 @@ import {
     Avatar,
     Title,
     Caption,
-    Paragraph,
     Drawer,
     Text,
-    Switch
 } from "react-native-paper"
 import {BACKGROUND_COLOR, BUTTON_COLOR, TEXT_COLOR_WHITE, USER_DETAILS_SCREEN, USER_LIST_SCREEN} from "../../constants";
 import {

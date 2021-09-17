@@ -17,27 +17,18 @@ export const TEXT_COLOR_WHITE = "#fff";
 
 export const MOCK_USERS: User[] = [
     {
-        name: "ABS D WDHN",
-        age: 23
+        username: "admin",
+        fullname: "Pham Cong Thanh",
+        role: "Administrator",
     },
     {
-        name: "A J WJ JW",
-        age: 22
+        username: "admin2",
+        fullname: "Lai Duc Hung",
+        role: "Administrator",
     },
     {
-        name: "AL LW PW P",
-        age: 23
-    },
-    {
-        name: "Ax xxxxx",
-        age: 23
-    },
-    {
-        name: "Bpwwpp",
-        age: 23
-    },
-    {
-        name: "Bjwjw",
-        age: 23
+        username: "user1",
+        fullname: "NguyenTT",
+        role: "User",
     },
 ];

@@ -67,7 +67,7 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
 
     const renderUser = ({item}) => (
         <View style={styles.userList}>
-            <View style={styles.item}>
+            <View style={styles.item} key={item.username}>
                 <View>
                     <View style={tailwind('flex-grow')}>
                         <View style={tailwind('border-2 rounded-full w-20 h-20')}>

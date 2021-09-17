@@ -13,13 +13,7 @@ export const UserDetailStack: React.FC<IProps> = (props: IProps) => {
     return (
         <Drawer.Navigator initialRouteName={USER_DETAILS_SCREEN}
                           screenOptions={{headerShown: false}}>
-            <Drawer.Screen
-                name={USER_DETAILS_SCREEN}
-                component={UserDetailScreen}
-                options={{
-                    title: 'User details'
-                }}
-            />
+
         </Drawer.Navigator>
     );
 };

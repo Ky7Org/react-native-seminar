@@ -1,1 +1,1 @@
-export * from './HomeStack';
+export * from './GlobalDrawer';
