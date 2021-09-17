@@ -1,18 +1,121 @@
 import React from 'react';
-import {Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Modal, ModalContent} from "react-native-modals";
 import tailwind from "tailwind-rn";
 import {CalendarIcon, ChartBarIcon, DeviceMobileIcon, LocationMarkerIcon, MailIcon} from "react-native-heroicons/solid";
 import {DELETE_USER_BUTTON} from "./constants";
+import {DELETE_DETAILS_SCREEN} from "../../../../constants";
 
 export default function EditAccountUserScreen({navigation, routes}) {
     return (
+
         <ScrollView bounces={false} style={tailwind('flex mt-10 bg-white')}>
+
+            {/* Delete Modal*/}
+            {/*<Modal width={0.7} visible={true}
+                   rounded
+                   actionsBordered
+            >
+                <ModalContent
+                    style={{ backgroundColor: '#fff' }}
+                >
+                    <View style={tailwind("flex items-center")}>
+                        <View style={tailwind("mb-3")}>
+                            <View style={tailwind("flex items-center")}>
+                                <Text style={tailwind("text-gray-400 text-xl font-medium")}>Delete account</Text>
+                            </View>
+                            <View style={tailwind("flex items-center")}>
+                                <Text style={tailwind("text-gray-400 text-sm")}>Your account is Deleted</Text>
+                            </View>
+                        </View>
+                        <View style={tailwind("w-11/12")}>
+                            <TouchableOpacity style={tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 bg-blue-500 mb-4")}
+                                              onPress={() =>{}}
+                            >
+                                <Text style={tailwind('text-white text-lg font-semibold')}>{"Done"}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 bg-gray-300")}
+                                              onPress={() =>{}}
+                            >
+                                <Text style={tailwind('text-black text-lg font-semibold')}>{"Undo"}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </ModalContent>
+            </Modal>*/}
+
+            {/* Verify Modal*/}
+            {/*<Modal width={0.7} visible={true}
+                   rounded
+                   actionsBordered
+            >
+                <ModalContent
+                    style={{ backgroundColor: '#fff' }}
+                >
+                    <View style={tailwind("flex items-center")}>
+                        <View style={tailwind("mb-3")}>
+                            <View style={tailwind("flex items-center")}>
+                                <Text style={tailwind("text-gray-400 text-xl font-medium")}>Verify your action</Text>
+                            </View>
+                            <View style={tailwind("flex items-center")}>
+                                <Text style={tailwind("text-gray-400 text-sm")}>Delete your selected account</Text>
+                            </View>
+                        </View>
+                        <View style={tailwind("w-11/12")}>
+                            <TouchableOpacity style={tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 bg-blue-500 mb-4")}
+                                              onPress={() =>{}}
+                            >
+                                <Text style={tailwind('text-white text-lg font-semibold')}>Delete</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 bg-gray-300")}
+                                              onPress={() =>{}}
+                            >
+                                <Text style={tailwind('text-black text-lg font-semibold')}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </ModalContent>
+            </Modal>*/}
+
+            {/* Error Modal*/}
+            <Modal width={0.7} visible={true}
+                   rounded
+                   actionsBordered
+            >
+                <ModalContent
+                    style={{backgroundColor: '#fff'}}
+                >
+                    <View style={tailwind("flex items-center")}>
+                        <View style={tailwind("mb-3")}>
+                            <View style={tailwind("flex items-center")}>
+                                <Text style={tailwind("text-gray-400 text-xl font-medium")}>Error !!!</Text>
+                            </View>
+                            <View style={tailwind("flex items-center")}>
+                                <Text style={tailwind("text-gray-400 text-sm")}>Error message</Text>
+                            </View>
+                        </View>
+                        <View style={tailwind("w-11/12")}>
+                            <TouchableOpacity style={{
+                                ...tailwind("rounded-full flex items-center justify-center w-full h-10  mr-4 mb-4"),
+                                backgroundColor: "#FF5F5F"
+                            }}
+                                              onPress={() => {
+                                              }}
+                            >
+                                <Text style={tailwind('text-white text-lg font-semibold')}>Done</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </ModalContent>
+            </Modal>
+
+
             <View style={styles.bigCircle}/>
             <View style={tailwind('flex items-center')}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity style={styles.buttonDelete}
-                                      onPress={() => {
-                                      }}>
+                                      onPress={() => navigation.push(DELETE_DETAILS_SCREEN, {username: "123"})}
+                    >
                         <Text style={styles.buttonText}>{DELETE_USER_BUTTON}</Text>
                     </TouchableOpacity>
                 </View>
@@ -84,8 +187,6 @@ export default function EditAccountUserScreen({navigation, routes}) {
         </ScrollView>
     );
 }
-const windowWidth = Dimensions.get('window').width;
-
 
 const styles = StyleSheet.create({
     bigCircle: {
@@ -126,7 +227,7 @@ const styles = StyleSheet.create({
     updateButton: {
         ...tailwind('rounded-full flex items-center justify-center w-10/12 h-14 bg-red-700'),
         backgroundColor: '#07FF8A'
-    }
+    },
 
 })
 
