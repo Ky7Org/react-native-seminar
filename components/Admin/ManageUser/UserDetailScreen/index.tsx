@@ -1,20 +1,29 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Button, Image, ScrollView, Text, View} from "react-native";
-import styles from "./styles/index.css";
+import React from 'react';
+import {
+    Button,
+    Image,
+    ScrollView,
+    Text,
+    View,
+} from "react-native";
 import tailwind from "tailwind-rn";
 import {BUTTON_UPDATE_PROFILE_TITLE} from "./constants";
 import {UPDATE_DETAILS_SCREEN} from "../../../../constants";
+import {RouteProp, useNavigation} from "@react-navigation/native";
 
+type IProps = {
+    route: RouteProp<any>;
+}
 
-export default function Index({navigation, routes}){
+export const UserDetailScreen: React.FC<IProps> = ({route}: IProps) => {
+
+        const navigation = useNavigation<any>();
+
         return (
             <ScrollView bounces={false} style={tailwind('flex')}>
-
                 <View style={tailwind('items-center overflow-hidden bg-white')}>
                     <Image source={require('../../../../assets/miku_profile.jpg')}
-                            style={tailwind('rounded-full h-24 w-24 flex items-center justify-center')}
-                    >
+                            style={tailwind('rounded-full h-24 w-24 flex items-center justify-center')}>
                     </Image>
 
                 </View>

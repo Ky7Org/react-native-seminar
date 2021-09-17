@@ -1,17 +1,17 @@
 import {Alert, Button, FlatList, ScrollView, Text, TextInput, View} from "react-native";
-import React from "react";
+import React, {Props} from "react";
 import {NavigationProp, Route} from "@react-navigation/native";
 import tailwind from "tailwind-rn";
-import {USER_DETAILS_SCREEN, users} from "../constants";
+import {USER_DETAILS_SCREEN} from "../constants";
+import {User} from "../models/users.model";
 
-
-type NavgiationType = {
+type DetailsComponentProps = {
     route: Route<any>;
     navigation: NavigationProp<any>;
+    users: User[];
 };
 
-export default function Detail({route, navigation}: NavgiationType) {
-    // const {id, otherId} = route.params;
+export const Detail: React.FC<DetailsComponentProps> = ({route, navigation, users}: DetailsComponentProps) => {
 
     const confirm = () => {
         return Alert.alert(
