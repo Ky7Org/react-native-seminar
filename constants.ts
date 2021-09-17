@@ -2,7 +2,7 @@ export const DETAILS_SCREEN = 'Details';
 export const HOME_SCREEN = 'Home';
 export const DEMO_SCREEN = 'Demo';
 export const USER_DETAILS_SCREEN = "User Details"
-export const UPDATE_DETAILS_SCREEN = "Update"
+export const UPDATE_DETAILS_SCREEN = "Update user detail"
 export const DELETE_DETAILS_SCREEN = "Delete"
 
 
