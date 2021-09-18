@@ -1,4 +1,5 @@
 import {User} from "./models/users.model";
+import {SignInUser} from "./models/signed-in-user.model";
 
 export const DETAILS_SCREEN = 'Details';
 export const HOME_SCREEN = 'Home';
@@ -14,6 +15,10 @@ export const BUTTON_COLOR = "#07FF8A"
 export const BACKGROUND_COLOR = "#002333"
 export const TEXT_COLOR_WHITE = "#fff";
 
+export const MOCK_SIGNED_IN_USER: SignInUser = {
+    fullname: 'Hatsune Miku',
+    role: 'Vocaloid Signer',
+};
 
 export const MOCK_USERS: User[] = [
     {
