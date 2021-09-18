@@ -38,7 +38,7 @@ export const EditAccountUserScreen: React.FC<IProps> = (props: IProps) => {
                     <TouchableOpacity style={styles.buttonDelete}
                                       onPress={() => {setVerifyModalVisible(true)}}
                     >
-                        <Text style={styles.buttonText}>{DELETE_USER_BUTTON}</Text>
+                        <Text style={styles.textButtonAdmin}>{DELETE_USER_BUTTON}</Text>
                     </TouchableOpacity>
                 </View>
 

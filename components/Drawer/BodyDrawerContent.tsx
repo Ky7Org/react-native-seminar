@@ -11,7 +11,7 @@ import {
     UserIconCompText,
     UsersListIconComp, UsersListIconCompText
 } from "./DrawerContent.icon";
-import {USER_LIST_SCREEN} from "../../constants";
+import {USER_DETAILS_SCREEN, USER_LIST_SCREEN} from "../../constants";
 import {aboutURL} from "./constants/constant";
 
 type IBodyDrawerProps = {
@@ -35,13 +35,13 @@ export const BodyDrawerSection: React.FC<IBodyDrawerProps> = (props: IBodyDrawer
                 <DrawerItem
                     icon={() => <UserIconComp/>}
                     label={() => <UserIconCompText/>}
-                    onPress={() => { navigation.goBack() }}/>
+                    onPress={() => { navigation.navigate(USER_DETAILS_SCREEN) }}/>
             </Drawer.Section>
             <Drawer.Section>
                 <DrawerItem
                     icon={() => <UsersListIconComp/>}
                     label={() => <UsersListIconCompText/>}
-                    onPress={() => { navigation.navigate({key: USER_LIST_SCREEN}) }}/>
+                    onPress={() => { navigation.navigate(USER_LIST_SCREEN) }}/>
             </Drawer.Section>
             <Drawer.Section>
                 <DrawerItem

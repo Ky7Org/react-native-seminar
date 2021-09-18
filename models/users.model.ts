@@ -1,5 +1,12 @@
 export type User = {
-    username: string;
-    fullname: string;
-    role: string;
+    username?: string;
+    password?: string;
+    fullname?: string;
+    email?: string;
+    role?: string;
+    birthDate?: number;
+    address?: string;
+    height?: number;
+    phone?: string;
+    cv?: string;
 };

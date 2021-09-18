@@ -1,4 +1,4 @@
 export interface SignInUser {
-    fullname: string,
-    role: string,
+    fullname?: string,
+    role?: string,
 };

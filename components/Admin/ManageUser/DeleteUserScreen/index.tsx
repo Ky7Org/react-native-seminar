@@ -43,13 +43,13 @@ export const DeleteUserScreen: React.FC<IProps> = (props: IProps) => {
                         <Text style={styles.modalText}>Verify your action: </Text>
                         <Text style={styles.modalMiniText}>Delete your selected account</Text>
                         <Pressable
-                            style={[styles.button, styles.buttonYes]}
+                            style={[styles.signInButton, styles.buttonYes]}
                             onPress={handleDeleteUser}
                         >
                             <Text style={styles.textStyle}>Delete</Text>
                         </Pressable>
                         <Pressable
-                            style={[styles.button, styles.buttonNo]}
+                            style={[styles.signInButton, styles.buttonNo]}
                             onPress={handleCloseModal}
                         >
                             <Text style={styles.textStyle}>Close</Text>
@@ -58,7 +58,7 @@ export const DeleteUserScreen: React.FC<IProps> = (props: IProps) => {
                 </View>
             </Modal>
             <Pressable
-                style={[styles.button, styles.buttonOpen]}
+                style={[styles.signInButton, styles.buttonOpen]}
                 onPress={() => setModalVisible(true)}
             >
                 <Text style={styles.textStyle}>Delete</Text>

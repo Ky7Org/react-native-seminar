@@ -1,0 +1,11 @@
+export const BY_CREATING_ACCOUNT = "By clicking Create account, I agree that I have read and accepted the ";
+export const AND = " and ";
+export const ALREADY_HAVE_ACCOUNT = "Already have an account ?";
+export const SIGN_IN = "Sign in";
+export const TERMS_OF_USE = "Terms of use";
+export const PRIVACY_POLICY = "Privacy Policy";
+export const CREATE_ACCOUNT = "Create account";
+export const CREATE_ACCOUNT_HEADER_TEXT = "Create an account";
+export const EMAIL_PLACEHOLDER = "E-mail";
+export const PASSWORD_PLACEHOLDER = "Password";
+export const REPASSWORD_PLACEHOLDER = "Re-password";

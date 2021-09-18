@@ -10,14 +10,26 @@ import {
 } from "./constants";
 import {GlobalDrawer} from "./navigations";
 import {SignInUser} from "./models/signed-in-user.model";
-//                <Stack.Screen name={LOGIN_SCREEN} component={LogInScreen} />
+import { AuthContext } from './utils/auth.context';
+
+const user: User = {
+    fullname: 'Hatsune Miku',
+    birthDate: 1191085200000,
+    height: 159,
+    address: 'Sapporo, Japan',
+    phone: '0356773***',
+    email: 'miku.work@gmail.com',
+    cv: `Hatsune Miku was the first Vocaloid developed by Crypton Future Media after they handled the release of the Yamaha vocal Meiko and Kaito. Miku was intended tobe the first of a series of Vocaloids called the "Character Vocal Series", which included Kagamine Rin/Len and Megurine Luka. Each had a particular concept and vocal direction. She was built using Yamaha's Vocaloid 2 technology, and later updated to newer engine versions. She was created by taking vocal samples from voice actress Saki Fujita at a controlled pitch and tone. Those samples all contain a single Japanese phonic that, when strung together, createsfull lyrics and phrases. The pitch of the samples was to be altered by the synthesizer engineand constructed into a keyboard-style instrument within the Vocaloid software.`,
+};
 export default function App() {
     const [users, setUsers] = useState<User[]>(MOCK_USERS);
     const [signedInUser, setSignedInUser] = useState<SignInUser>(MOCK_SIGNED_IN_USER);
 
     return (
         <NavigationContainer>
-            <GlobalDrawer users={users} signedInUser={signedInUser} />
+            <AuthContext.Provider value={{user}}>
+                <GlobalDrawer users={users} signedInUser={signedInUser} />
+            </AuthContext.Provider>
             <ModalPortal/>
         </NavigationContainer>
     );

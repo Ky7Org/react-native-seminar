@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         ...tailwind('rounded-full flex items-center justify-center w-32 h-6 mr-4'),
         backgroundColor: "#FF5F5F"
     },
-    buttonText: {
+    textButtonAdmin: {
         ...tailwind('text-white text-sm font-bold'),
     },
     updateButton: {

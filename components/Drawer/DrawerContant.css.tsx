@@ -1,5 +1,8 @@
 import tailwind from "tailwind-rn";
-import {BACKGROUND_COLOR, TEXT_COLOR_WHITE} from "../../constants";
+import {
+    DAINTREE_COLOR,
+    SOLID_WHITE_COLOR,
+} from "../../constants";
 import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
@@ -7,55 +10,35 @@ export const styles = StyleSheet.create({
        ...tailwind('mr-2'),
     },
     container: {
-        flex: 1,
-        backgroundColor: BACKGROUND_COLOR
+        ...tailwind('flex-1'),
+        backgroundColor: DAINTREE_COLOR,
     },
     userAvatarSection: {
         flexDirection: "row",
         ...tailwind('mt-16 ml-6')
     },
     userDesignationSection: {
-        marginLeft: 15,
+        ...tailwind('ml-3'),
         flexDirection: "column",
     },
     drawerContent: {
         flex: 1,
     },
     userInfoSection: {
-        paddingLeft: 20,
+       ...tailwind('pl-5'),
     },
     title: {
         fontSize: 16,
-        marginTop: 3,
         fontWeight: "bold",
-        color: TEXT_COLOR_WHITE
+        color: SOLID_WHITE_COLOR
     },
     caption: {
         fontSize: 14,
         lineHeight: 14,
-        color: TEXT_COLOR_WHITE
-    },
-    row: {
-        marginTop: 20,
-        flexDirection: "row",
-        alignItems: "center"
-    },
-    section: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginRight: 15,
-    },
-    paragraph: {
-        fontWeight: "bold",
-        marginRight: 3,
-    },
-    drawerSection: {
-        marginTop: 15,
+        color: SOLID_WHITE_COLOR
     },
     bottomDrawerSection: {
         ...tailwind('ml-6'),
-        marginBottom: 15,
-        borderTopColor: "#000",
         borderTopWidth: 1,
     },
     preference: {
@@ -66,10 +49,10 @@ export const styles = StyleSheet.create({
     },
     drawItemLabel:{
         ...tailwind('-ml-6'),
-        color: TEXT_COLOR_WHITE, fontWeight: "bold",
+        color: SOLID_WHITE_COLOR,
+        fontWeight: "bold",
     },
     drawer: {
         ...tailwind('mt-20')
-    }
-
+    },
 })

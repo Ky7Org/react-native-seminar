@@ -1,13 +1,16 @@
 import {StyleSheet} from "react-native";
 import tailwind from "tailwind-rn";
-import {BACKGROUND_COLOR, BUTTON_COLOR, TEXT_COLOR_WHITE} from "../../../../../constants";
+import {
+    DAINTREE_COLOR,
+    SOLID_WHITE_COLOR, SPRING_GREEN_COLOR,
+} from "../../../../constants";
 
 export const styles = StyleSheet.create({
     textInput: {
         ...tailwind('rounded-full w-full h-16 bg-white mt-8 mr-8 ml-3 border-2 border-green-400'),
-        backgroundColor: BACKGROUND_COLOR,
+        backgroundColor: DAINTREE_COLOR,
         paddingLeft: 30,
-        color: TEXT_COLOR_WHITE,
+        color: SOLID_WHITE_COLOR,
     },
     container: {
         flex: 1,
@@ -16,7 +19,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         marginRight: 20
     },
-    buttonText: {
+    textButtonAdmin: {
         color: "white",
         fontSize: 14,
         fontWeight: 'bold',
@@ -24,11 +27,11 @@ export const styles = StyleSheet.create({
     },
     buttonCreate: {
         ...tailwind('rounded-full w-full h-20 bg-white mt-8 ml-3 border-2 border-green-400'),
-        backgroundColor: BUTTON_COLOR,
+        backgroundColor: SPRING_GREEN_COLOR,
         justifyContent: "center",
     },
     scrollView: {
-        backgroundColor: BACKGROUND_COLOR
+        backgroundColor: DAINTREE_COLOR
     },
     header: {
         marginLeft: 20

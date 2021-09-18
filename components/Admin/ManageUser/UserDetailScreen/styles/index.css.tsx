@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
         height: 30,
         marginLeft: 22,
     },
-    buttonText: {
+    textButtonAdmin: {
         color: "white",
         fontSize: 14,
         fontWeight: 'bold'

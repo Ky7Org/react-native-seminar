@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     Image,
     ScrollView,
@@ -20,13 +20,15 @@ import {
     BUTTON_ADMIN,
     BUTTON_EDIT_PROFILE,
 } from "./constants";
+import {User} from "../../../../models/users.model";
+import {AuthContext} from "../../../../utils/auth.context";
 
 type IProps = {
     route: RouteProp<any>;
 };
 
 export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
-
+    const user = useContext<User>(AuthContext) ?? {} as User;
     const navigation = useNavigation();
 
     return (
@@ -38,19 +40,15 @@ export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
             <View style={styles.bigCircle}/>
             <View style={tailwind('flex items-center')}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity style={styles.buttonAdmin}
-                                      onPress={() => {}}>
-                        <Text style={styles.buttonText}>{BUTTON_ADMIN}</Text>
+                    <TouchableOpacity style={styles.buttonAdmin}>
+                        <Text style={styles.textButtonAdmin}>{BUTTON_ADMIN}</Text>
                     </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.buttonEdit}
-                                      onPress={() => {}}>
-                        <Text style={styles.buttonText}>{BUTTON_EDIT_PROFILE}</Text>
+                    <TouchableOpacity style={styles.buttonEdit} onPress={() => {}}>
+                        <Text style={styles.textButtonAdmin}>{BUTTON_EDIT_PROFILE}</Text>
                     </TouchableOpacity>
                 </View>
-
                 <View style={tailwind('font-bold')}>
-                    <Text style={tailwind('font-bold text-2xl text-white')}>Tien</Text>
+                    <Text style={tailwind('font-bold text-2xl text-white')}>{user.fullname}</Text>
                 </View>
                 <View style={tailwind('border-8 border-transparent')}>
                     <Image style={tailwind('rounded-full w-24 h-24')}
@@ -60,43 +58,32 @@ export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
                 <View style={tailwind('flex flex-row flex-wrap w-full p-2 border-gray-300 border-t-2 mt-6')}>
                     <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
                         <CalendarIcon stroke="#07FF8A" size={31} style={tailwind('mr-2')}/>
-                        <Text style={tailwind('text-lg')}>August 31 2007</Text>
+                        <Text style={tailwind('text-lg')}>{new Intl.DateTimeFormat('vi-VN').format(user.birthDate)}</Text>
                     </View>
                     <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
                         <ChartBarIcon stroke="#07FF8A" size={31} style={tailwind('mr-2')}/>
-                        <Text style={tailwind('text-lg')}>159 cm</Text>
+                        <Text style={tailwind('text-lg')}>{user.height} cm</Text>
                     </View>
                     <View style={tailwind('flex flex-row items-center w-1/2 p-2')}>
                         <LocationMarkerIcon stroke="#07FF8A" size={31} style={tailwind('mr-2')}/>
-                        <Text style={tailwind('text-lg')}>Sapporo, Japan</Text>
+                        <Text style={tailwind('text-lg')}>{user.address}</Text>
                     </View>
                 </View>
 
                 <View style={tailwind('flex flex-wrap w-full p-2 border-gray-300 border-t-2')}>
                     <View style={tailwind('flex flex-row items-center p-2')}>
                         <DeviceMobileIcon stroke="#07FF8A" size={31} style={tailwind('mr-2')}/>
-                        <Text style={tailwind('text-lg')}>0356773***</Text>
+                        <Text style={tailwind('text-lg')}>{user.phone}</Text>
                     </View>
                     <View style={tailwind('flex flex-row items-center p-2')}>
                         <MailIcon stroke="#07FF8A" size={31} style={tailwind('mr-2')}/>
-                        <Text style={tailwind('text-lg')}>miku.work@gmail.com</Text>
+                        <Text style={tailwind('text-lg')}>{user.email}</Text>
                     </View>
                 </View>
 
                 <View style={tailwind('p-4 border-gray-300 border-t-2')}>
                     <Text style={tailwind('text-2xl font-bold')}>Curriculum Vitae</Text>
-                    <Text style={tailwind('text-lg')}>
-                        Hatsune Miku was the first Vocaloid developed by Crypton Future
-                        Media after they handled the release of the Yamaha vocal Meiko and Kaito. Miku was intended to
-                        be the first of a series of Vocaloids called the "Character Vocal Series", which included
-                        Kagamine Rin/Len and Megurine Luka. Each had a particular concept and vocal direction.[4]
-
-                        She was built using Yamaha's Vocaloid 2 technology, and later updated to newer engine versions.
-                        She was created by taking vocal samples from voice actress Saki Fujita at a controlled pitch and
-                        tone. Those samples all contain a single Japanese phonic that, when strung together, creates
-                        full lyrics and phrases. The pitch of the samples was to be altered by the synthesizer engine
-                        and constructed into a keyboard-style instrument within the Vocaloid software.
-                    </Text>
+                    <Text style={tailwind('text-lg')}>{user.cv}</Text>
                 </View>
             </View>
         </ScrollView>
