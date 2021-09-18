@@ -1,87 +1,24 @@
-import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {NavigationContainer} from "@react-navigation/native";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import React, {useState} from 'react';
+import {NavigationContainer} from "@react-navigation/native"
 import 'react-native-gesture-handler';
-import Home from "./components/HomeScreen";
-import Detail from "./components/DetailScreen";
-import {DETAILS_SCREEN, HOME_SCREEN, USER_DETAILS_SCREEN, LOGIN_SCREEN} from "./constants";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import UserDetail from "./components/Admin/ManageUser/UserDetailScreen";
-import UserDetailScreen from "./components/Admin/ManageUser/UserDetailScreen";
-import {createDrawerNavigator} from "@react-navigation/drawer";
-import LogInScreen from "./components/Admin/LoginScreen";
+import {User} from "./models/users.model";
+import { ModalPortal } from 'react-native-modals';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
-
-const HomeStack = () => {
-    return (
-        <Drawer.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Drawer.Screen
-                name={HOME_SCREEN}
-                component={Home}
-                options={{
-                    title: 'Trang chủ'
-                }}
-            />
-            <Drawer.Screen
-                name={DETAILS_SCREEN}
-                component={Detail}/>
-            <Drawer.Screen
-                name={USER_DETAILS_SCREEN}
-                component={UserDetail}
-                options={{
-                    title: 'User details'
-                }}
-            />
-        </Drawer.Navigator>
-    );
-};
-const UserDetailStack = () => {
-    return (
-        <Drawer.Navigator
-            initialRouteName={LOGIN_SCREEN}
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Drawer.Screen
-                name={LOGIN_SCREEN}
-                component={LogInScreen}
-            />
-        </Drawer.Navigator>)
-};
-
+import {
+    MOCK_SIGNED_IN_USER,
+    MOCK_USERS,
+} from "./constants";
+import {GlobalDrawer} from "./navigations";
+import {SignInUser} from "./models/signed-in-user.model";
+//                <Stack.Screen name={LOGIN_SCREEN} component={LogInScreen} />
 export default function App() {
+    const [users, setUsers] = useState<User[]>(MOCK_USERS);
+    const [signedInUser, setSignedInUser] = useState<SignInUser>(MOCK_SIGNED_IN_USER);
+
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{
-                headerShown: false
-            }}
-            initialRouteName={LOGIN_SCREEN}
-            >
-                <Stack.Screen name={LOGIN_SCREEN} component={LogInScreen} />
-                <Stack.Screen name={HOME_SCREEN} component={HomeStack}/>
-                <Stack.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
-            </Stack.Navigator>
+            <GlobalDrawer users={users} signedInUser={signedInUser} />
+            <ModalPortal/>
         </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        'color': '#000',
-    },
-});
