@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View} from 'react-native';
 import {
     DrawerContentComponentProps,
@@ -6,19 +6,18 @@ import {
 } from '@react-navigation/drawer';
 import {useNavigation} from "@react-navigation/native";
 import {styles} from "./DrawerContant.css";
-import {SignInUser} from "../../models/signed-in-user.model";
 import {HeaderDrawerSection} from "./HeaderDrawerContent";
 import {BodyDrawerSection} from "./BodyDrawerContent";
 import {FooterDrawerSection} from "./FooterDrawerContent";
+import {UsersContext} from "../../utils/users.context";
 
 type IProps = {
-    signedInUser: SignInUser;
-    drawerContentComponentProps: DrawerContentComponentProps
+    drawerContentComponentProps: DrawerContentComponentProps;
 };
 
 export const DrawerContent: React.FC<any> = (props: any) => {
+    const users = useContext(UsersContext);
     const {
-        signedInUser,
         drawerContentComponentProps,
     } = props;
 
@@ -26,7 +25,7 @@ export const DrawerContent: React.FC<any> = (props: any) => {
 
         return (
             <View style={styles.container}>
-                <HeaderDrawerSection signedInUser={signedInUser}/>
+                <HeaderDrawerSection/>
                 <DrawerContentScrollView {...drawerContentComponentProps}>
                     <BodyDrawerSection navigation={navigation}/>
                 </DrawerContentScrollView>

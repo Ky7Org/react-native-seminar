@@ -6,29 +6,35 @@ import {
 } from "../../../../constants";
 
 export const styles = StyleSheet.create({
-    textInput: {
-        ...tailwind('rounded-full w-full h-16 bg-white mt-8 mr-8 ml-3 border-2 border-green-400'),
+    input: {
+        ...tailwind('w-11/12 h-14 pl-6 rounded-full border-2 mt-4 mb-2'),
         backgroundColor: DAINTREE_COLOR,
-        paddingLeft: 30,
+        borderColor: SPRING_GREEN_COLOR,
+        fontSize: 20,
+        fontWeight: 'bold',
         color: SOLID_WHITE_COLOR,
     },
     container: {
-        flex: 1,
+        ...tailwind('flex mr-2 mt-28'),
         justifyContent: 'center',
-        display: "flex",
         flexDirection: 'column',
-        marginRight: 20
+    },
+    headerText: {
+        ...tailwind('font-bold ml-3 text-white mb-3'),
+        fontSize: 35,
     },
     textButtonAdmin: {
         color: "white",
-        fontSize: 14,
+        fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center'
     },
     buttonCreate: {
-        ...tailwind('rounded-full w-full h-20 bg-white mt-8 ml-3 border-2 border-green-400'),
+        ...tailwind('flex flex-row rounded-full mt-8 ml-3 h-14 w-11/12'),
         backgroundColor: SPRING_GREEN_COLOR,
         justifyContent: "center",
+        alignItems: 'center',
+        fontSize: 25,
     },
     scrollView: {
         backgroundColor: DAINTREE_COLOR
@@ -37,10 +43,25 @@ export const styles = StyleSheet.create({
         marginLeft: 20
     },
     body: {
-        marginRight: 20,
-        marginLeft: 20
+        ...tailwind('flex items-center'),
+    },
+    buttonCreateAccount: {
+        ...tailwind('flex flex-row items-center'),
+        justifyContent: "center",
+        marginRight: 10
+    },
+    textAlreadyHaveAccount: {
+      ...tailwind('mt-16 ml-8 text-white'),
+        fontSize: 20,
+        fontWeight: '600',
     },
     footer: {
-        marginRight: 10
+        ...tailwind('flex flex-row items-center my-6 mx-6 mt-10'),
+        justifyContent: 'center',
+    },
+    footerText: {
+        ...tailwind('text-white text-xs'),
+        fontWeight: '600',
+        fontSize: 14,
     }
 });

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     FlatList,
     Image,
@@ -13,27 +13,24 @@ import {
     BUTTON_ADMIN,
 } from "../UserDetailScreen/constants";
 import {SearchIcon} from "react-native-heroicons/solid";
-import {User} from "../../../../models/users.model";
 import {styles} from "./styles/index.css";
-
+import {UsersContext} from "../../../../utils/users.context";
 type IProps = {
-  users: User[];
 };
 
 export const UserListScreen: React.FC<IProps> = (props: IProps) => {
 
-    const {
-        users,
-    } = props;
+    const users = useContext(UsersContext);
+
+    useEffect(() => {
+        setDataSource(users);
+        setSearchResult(users);
+    }, []);
 
     const [search, setSearch] = useState("");
     const [dataSource, setDataSource] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
 
-    useEffect(() => {
-        setDataSource(users);
-        setSearchResult(users);
-    }, [])
 
 
     const handleSearch = (searchValue) => {
@@ -83,8 +80,7 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
             <View style={styles.bigCircle} />
             <View style={tailwind('flex items-center')}>
             <View style={styles.headerContainer}>
-                <TouchableOpacity style={styles.buttonAdmin}
-                                  onPress={() => {}}>
+                <TouchableOpacity style={styles.buttonAdmin}>
                     <Text style={styles.textButtonAdmin}>{BUTTON_ADMIN}</Text>
                 </TouchableOpacity>
             </View>

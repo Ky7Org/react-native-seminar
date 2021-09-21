@@ -27,12 +27,6 @@ export const BodyDrawerSection: React.FC<IBodyDrawerProps> = (props: IBodyDrawer
         <View style={styles.userInfoSection}>
             <Drawer.Section style={styles.drawer}>
                 <DrawerItem
-                    icon={() => <LogInIconComp/>}
-                    label={() => <LogInIconCompText/>}
-                    onPress={() => {}}/>
-            </Drawer.Section>
-            <Drawer.Section>
-                <DrawerItem
                     icon={() => <UserIconComp/>}
                     label={() => <UserIconCompText/>}
                     onPress={() => { navigation.navigate(USER_DETAILS_SCREEN) }}/>

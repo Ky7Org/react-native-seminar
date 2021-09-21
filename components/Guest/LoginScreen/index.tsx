@@ -6,9 +6,9 @@ import {
     View,
 } from 'react-native';
 import {Formik} from 'formik';
-import styles from "./styles";
+import indexCss from "./styles/index.css";
 import {User} from "../../../models/users.model";
-import {SOLID_WHITE_COLOR, USER_LIST_SCREEN} from "../../../constants";
+import {CREATE_ACCOUNT_SCREEN, SOLID_WHITE_COLOR, USER_LIST_SCREEN} from "../../../constants";
 import {
     CREATE_ACCOUNT_TEXT,
     DONT_HAVE_ACCOUNT_TEXT,
@@ -21,37 +21,32 @@ import {
 import {checkLogin} from "../../../services/users.service";
 import { AuthContext } from '../../../utils/auth.context';
 import {useNavigation} from "@react-navigation/native";
+import {UsersContext} from "../../../utils/users.context";
 
 type IProps = {
-  users: User[],
 };
 
 const LoginScreen: React.FC<IProps> = (props: IProps) => {
-
-    const {
-        users,
-    } = props;
+    const users = useContext(UsersContext);
+    const authContext = useContext<any>(AuthContext);
+    const navigation = useNavigation<any>();
 
     const [isError, setIsError] = useState<boolean>(false);
-
-    const user = useContext<any>(AuthContext);
-    const navigation = useNavigation<any>();
 
     return (
         <Formik initialValues={{email: '', password: ''}}
             onSubmit={values => {
                 checkLogin(values).then(() => {
                     setIsError(false);
-                    user.user = {...users.filter(u => u.username === values.email)[0]};
-                    navigation.navigate(USER_LIST_SCREEN);
+                    authContext.setAuth({...users.filter(u => u.username === values.email)[0]});
                 }).catch(() => setIsError(true));
             }}>
             {({handleChange, handleBlur, handleSubmit, values}) => (
-                <View style={styles.container}>
+                <View style={indexCss.container}>
                     <View>
-                        <Text style={styles.headerContainer}>{LOGIN_CAMEL_CASE_TEXT}</Text>
+                        <Text style={indexCss.headerContainer}>{LOGIN_CAMEL_CASE_TEXT}</Text>
                     </View>
-                    <View style={styles.containerForm}>
+                    <View style={indexCss.containerForm}>
                         <TextInput
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -60,7 +55,7 @@ const LoginScreen: React.FC<IProps> = (props: IProps) => {
                             value={values.email}
                             placeholder={EMAIL_TEXT}
                             placeholderTextColor={SOLID_WHITE_COLOR}
-                            style={styles.input}
+                            style={indexCss.input}
                         />
                         <TextInput
                             autoCapitalize="none"
@@ -70,19 +65,23 @@ const LoginScreen: React.FC<IProps> = (props: IProps) => {
                             value={values.password}
                             placeholder={PASSWORD_TEXT}
                             placeholderTextColor={SOLID_WHITE_COLOR}
-                            style={styles.input}
+                            style={indexCss.input}
                             secureTextEntry={IS_PASSWORD_SECURED}
                         />
                         <View>
-                            <Text style={styles.textError}>{isError ? INVALID_CREDENTIAL_TEXT : ' '}</Text>
+                            <Text style={indexCss.textError}>{isError ? INVALID_CREDENTIAL_TEXT : ' '}</Text>
                         </View>
-                        <TouchableOpacity style={styles.signInButton} onPress={() => handleSubmit()}>
-                            <Text style={styles.textSignInButton}>{LOGIN_TEXT}</Text>
+                        <TouchableOpacity style={indexCss.signInButton} onPress={() => handleSubmit()}>
+                            <Text style={indexCss.textSignInButton}>{LOGIN_TEXT}</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.footerContainer}>
-                        <Text style={styles.textDontHaveAccount}>{DONT_HAVE_ACCOUNT_TEXT}</Text>
-                        <Text style={styles.textCreateAccount}>{CREATE_ACCOUNT_TEXT}</Text>
+                    <View style={indexCss.footerContainer}>
+                        <Text style={indexCss.textDontHaveAccount}>{DONT_HAVE_ACCOUNT_TEXT}</Text>
+                        <Text
+                            onPress={() => navigation.push(CREATE_ACCOUNT_SCREEN)}
+                            style={indexCss.textCreateAccount}>
+                            {CREATE_ACCOUNT_TEXT}
+                        </Text>
                     </View>
                 </View>
             )}

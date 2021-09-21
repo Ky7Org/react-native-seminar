@@ -6,6 +6,7 @@ export const PASSWORD_TEXT = "Password";
 export const LOGIN_CAMEL_CASE_TEXT = "Sign In";
 export const EMAIL_VAR = "email";
 export const PASSWORD_VAR = "password";
+export const RE_PASSWORD_VAR = "rePassword";
 
 export const IS_PASSWORD_SECURED = true;
 

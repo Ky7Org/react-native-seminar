@@ -6,21 +6,17 @@ import {SignInUser} from "../../models/signed-in-user.model";
 import { AuthContext } from "../../utils/auth.context";
 
 type IHeaderDrawerSectionProps = {
-    signedInUser: SignInUser,
 };
 
 export const HeaderDrawerSection: React.FC<IHeaderDrawerSectionProps> = (props: IHeaderDrawerSectionProps) => {
-    const {
-        signedInUser,
-    } = props;
 
-    const {user} = useContext(AuthContext);
+    const {auth} = useContext(AuthContext);
 
     return <View style={styles.userAvatarSection}>
         <Avatar.Image size={80} source={require('../../assets/miku_profile.jpg')}/>
         <View style={styles.userDesignationSection}>
-            <Title style={styles.title}>{user.fullname}</Title>
-            <Caption style={styles.caption}>{user.role}</Caption>
+            <Title style={styles.title}>{auth.fullname}</Title>
+            <Caption style={styles.caption}>{auth.role}</Caption>
         </View>
     </View>;
 }

@@ -20,7 +20,7 @@ type IProps = {
   navigation: NavigationProp<any>;
 };
 
-export const EditAccountUserScreen: React.FC<IProps> = (props: IProps) => {
+export const UpdateUserScreen: React.FC<IProps> = (props: IProps) => {
 
     const navigation = useNavigation();
     const {

@@ -2,10 +2,10 @@ import {StyleSheet} from "react-native";
 import {
     DAINTREE_COLOR, SOLID_WHITE_COLOR, SPRING_GREEN_COLOR,
     TORCH_RED_COLOR,
-} from "../../../constants";
+} from "../../../../constants";
 import tailwind from "tailwind-rn";
 
-const styles = StyleSheet.create({
+const indexCss = StyleSheet.create({
     container: {
         ...tailwind('flex-1 p-2'),
         backgroundColor: DAINTREE_COLOR,
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default styles;
+export default indexCss;
