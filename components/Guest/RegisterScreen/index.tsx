@@ -54,7 +54,7 @@ export const RegisterUserScreen: React.FC<IProps> = (props: IProps) => {
                         phone: '0123456789',
                         height: 170,
                         address: 'Vietnam',
-                        birthDate: 7_000_000,
+                        birthDate: 7000000,
                     });
                     navigation.goBack();
                 }}>
