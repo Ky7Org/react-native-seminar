@@ -15,6 +15,7 @@ import {
 import {SearchIcon} from "react-native-heroicons/solid";
 import {styles} from "./styles/index.css";
 import {UsersContext} from "../../../../utils/users.context";
+import {SOLID_WHITE_COLOR} from "../../../../constants";
 type IProps = {
 };
 
@@ -79,13 +80,13 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
         return  <>
             <View style={styles.bigCircle} />
             <View style={tailwind('flex items-center')}>
-            <View style={styles.headerContainer}>
+            <View style={styles.header}>
                 <TouchableOpacity style={styles.buttonAdmin}>
                     <Text style={styles.textButtonAdmin}>{BUTTON_ADMIN}</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.searchSection}>
-                <SearchIcon stroke="#000" size={31} style={tailwind('p-4 ml-8')}/>
+                <SearchIcon stroke={SOLID_WHITE_COLOR} size={31} style={tailwind('p-4 ml-8')}/>
                 <TextInput
                     onChangeText={(searchValue: string) => handleSearch(searchValue)}
                     value={search}

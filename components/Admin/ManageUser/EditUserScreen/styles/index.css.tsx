@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     informationLabel: {
         ...tailwind("text-xs text-gray-400"),
     },
-    headerContainer: {
+    header: {
         ...tailwind('flex flex-row justify-end w-full mt-6'),
     },
     buttonDelete: {

@@ -5,14 +5,14 @@ import {
 } from "../../../../constants";
 import tailwind from "tailwind-rn";
 
-const indexCss = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         ...tailwind('flex-1 p-2'),
         backgroundColor: DAINTREE_COLOR,
         justifyContent: 'center',
         fontWeight: "bold",
     },
-    containerForm: {
+    body: {
         ...tailwind('items-center'),
     },
     input: {
@@ -26,13 +26,15 @@ const indexCss = StyleSheet.create({
     inputPassword: {
         ...tailwind('mb-2 mt-4'),
     },
-    headerContainer: {
+    header: {
         ...tailwind('pl-8 mb-2'),
+    },
+    headerText: {
         fontSize: 35,
         color: SOLID_WHITE_COLOR,
         fontWeight: 'bold',
     },
-    signInButton: {
+    buttonSignIn: {
         ...tailwind('flex flex-row rounded-full h-14 w-11/12 mb-56'),
         justifyContent: 'center',
         alignItems: 'center',
@@ -60,10 +62,11 @@ const indexCss = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
-    footerContainer: {
+    footer: {
         ...tailwind('flex flex-row'),
+        flexWrap: 'wrap',
         justifyContent: "center"
     },
 });
 
-export default indexCss;
+export default styles;

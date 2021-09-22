@@ -34,7 +34,7 @@ export const UpdateUserScreen: React.FC<IProps> = (props: IProps) => {
         <ScrollView bounces={false} style={tailwind('flex mt-10 bg-white')}>
             <View style={styles.bigCircle}/>
             <View style={tailwind('flex items-center')}>
-                <View style={styles.headerContainer}>
+                <View style={styles.header}>
                     <TouchableOpacity style={styles.buttonDelete}
                                       onPress={() => {setVerifyModalVisible(true)}}
                     >

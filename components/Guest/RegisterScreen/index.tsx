@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import tailwind from "tailwind-rn";
 import {styles} from './styles/index.css';
 import {useNavigation} from "@react-navigation/native";
 import {
@@ -29,37 +28,43 @@ import {
 } from '../../../constants';
 import {User} from "../../../models/users.model";
 import {UsersContext} from "../../../utils/users.context";
-import {checkLogin} from "../../../services/users.service";
 import {Formik} from 'formik';
 import {EMAIL_VAR, PASSWORD_VAR, RE_PASSWORD_VAR} from "../LoginScreen/constants/constant";
 
 type IProps = {};
 
-export const RegisterUserScreen: React.FC<IProps> = (props: IProps) => {
+export const RegisterUserScreen: React.VFC<IProps> = (props: IProps) => {
 
     const users = useContext<User[]>(UsersContext);
     const navigation = useNavigation();
     const [isError, setIsError] = useState<boolean>(false);
 
+    const initialValues = {
+        email: '',
+        password: '',
+        rePassword: '',
+    };
+
+    const handleSubmit = (values) => {
+        users.push({
+            username: values.email,
+            email: values.email,
+            password: values.password,
+            fullname: values.email,
+            role: 'User',
+            cv: 'Lorem ipsum dolor sit amet',
+            phone: '0123456789',
+            height: 170,
+            address: 'Vietnam',
+            birthDate: 7000000,
+        });
+        navigation.goBack();
+    }
+
     return (
-        <Formik initialValues={{email: '', password: '', rePassword: ''}}
-                onSubmit={values => {
-                    users.push({
-                        username: values.email,
-                        email: values.email,
-                        password: values.password,
-                        fullname: values.email,
-                        role: 'User',
-                        cv: 'Lorem ipsum dolor sit amet',
-                        phone: '0123456789',
-                        height: 170,
-                        address: 'Vietnam',
-                        birthDate: 7000000,
-                    });
-                    navigation.goBack();
-                }}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({handleChange, handleBlur, handleSubmit, values}) => (
-                <ScrollView bounces={false} style={styles.scrollView}>
+                <ScrollView bounces={false} style={styles.baseContainer}>
                     <View style={styles.container}>
                         <View style={styles.header}>
                             <Text style={styles.headerText}>{CREATE_ACCOUNT_HEADER_TEXT}</Text>
@@ -98,24 +103,27 @@ export const RegisterUserScreen: React.FC<IProps> = (props: IProps) => {
                                 placeholderTextColor={SOLID_WHITE_COLOR}
                             />
                         </View>
-                        <Text style={styles.textAlreadyHaveAccount}>
-                            {ALREADY_HAVE_ACCOUNT}
-                            <Text style={{color: '#07FF8A'}} onPress={() => navigation.goBack()}>{SIGN_IN}</Text>
-                        </Text>
-                        <View style={styles.buttonCreateAccount}>
-                            <TouchableOpacity style={styles.buttonCreate} onPress={() => handleSubmit()}>
-                                <Text style={styles.textButtonAdmin}>{CREATE_ACCOUNT}</Text>
-                            </TouchableOpacity>
-                        </View>
                         <View style={styles.footer}>
-                            <Text style={styles.footerText}>
-                                <Text>{BY_CREATING_ACCOUNT}</Text>
-                                <Text style={{color: SPRING_GREEN_COLOR}}
-                                      onPress={() => Alert.alert(TERMS_OF_USE)}>{TERMS_OF_USE}</Text>
-                                <Text>{AND}</Text>
-                                <Text style={{color: SPRING_GREEN_COLOR}}
-                                      onPress={() => Alert.alert(PRIVACY_POLICY)}>{PRIVACY_POLICY}</Text>
-                            </Text>
+                            <View style={styles.textFooterAlreadyHaveAccount}>
+                                <Text style={styles.textAlreadyHaveAccount}>{ALREADY_HAVE_ACCOUNT}</Text>
+                                <Text style={styles.textHaveAccountSignIn}
+                                      onPress={() => navigation.goBack()}>{SIGN_IN}</Text>
+                            </View>
+                            <View style={styles.buttonCreateAccount}>
+                                <TouchableOpacity style={styles.buttonCreate} onPress={() => handleSubmit()}>
+                                    <Text style={styles.textButtonAdmin}>{CREATE_ACCOUNT}</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.footerText}>
+                                <Text style={styles.textTermsOfUseFooter}>
+                                    {BY_CREATING_ACCOUNT}
+                                    <Text style={{color: SPRING_GREEN_COLOR}}
+                                          onPress={() => Alert.alert(TERMS_OF_USE)}>{TERMS_OF_USE}</Text>
+                                    <Text style={styles.textTermsOfUseFooter}>{AND}</Text>
+                                    <Text style={{color: SPRING_GREEN_COLOR}}
+                                          onPress={() => Alert.alert(PRIVACY_POLICY)}>{PRIVACY_POLICY}</Text>
+                                </Text>
+                            </View>
                         </View>
                     </View>
                 </ScrollView>
