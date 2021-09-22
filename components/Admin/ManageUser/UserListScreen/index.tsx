@@ -15,11 +15,17 @@ import {
 import {SearchIcon} from "react-native-heroicons/solid";
 import {styles} from "./styles/index.css";
 import {UsersContext} from "../../../../utils/users.context";
-import {SOLID_WHITE_COLOR} from "../../../../constants";
+import {SOLID_WHITE_COLOR, USER_DETAILS_SCREEN} from "../../../../constants";
+import {NavigationProp, useNavigation} from "@react-navigation/native";
 type IProps = {
+    navigation: NavigationProp<any>;
 };
 
 export const UserListScreen: React.FC<IProps> = (props: IProps) => {
+
+    const {
+        navigation,
+    } = props;
 
     const users = useContext(UsersContext);
 
@@ -53,10 +59,16 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
         }
     }
 
+    const handleRenderUserDetail = (username: string) => {
+      navigation.navigate(USER_DETAILS_SCREEN, {
+          username: username,
+      });
+    };
+
     const renderUser = ({item}) => (
         <View style={styles.userList}>
             <View style={styles.item} key={item.username}>
-                <View>
+                <TouchableOpacity onPress={() => handleRenderUserDetail(item.username)}>
                     <View style={tailwind('flex-grow')}>
                         <View style={tailwind('border-2 rounded-full w-20 h-20')}>
                             <Image style={tailwind('rounded-full w-16 h-16 mx-2 my-2')}
@@ -71,7 +83,7 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
                             </Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
         </View>
     );

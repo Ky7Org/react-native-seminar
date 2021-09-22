@@ -5,8 +5,8 @@ import {
 } from "../../constants";
 import React from "react";
 import {DrawerContent} from "../../components/Drawer/DrawerContent";
-import {UserListScreen} from "../../components/Admin/ManageUser/UserListScreen";
 import {UserDetailStack} from "../users-detail.stack";
+import {UsersListStack} from "../users-list-stack";
 type IProps = {
 };
 
@@ -18,7 +18,7 @@ export const GlobalDrawer: React.FC<IProps> = (props: IProps) => {
                 headerShown: false
             }}
             drawerContent={(props) => <DrawerContent {...props}/>}>
-            <Drawer.Screen name={USER_LIST_SCREEN} component={UserListScreen} />
+            <Drawer.Screen name={USER_LIST_SCREEN} component={UsersListStack} />
             <Drawer.Screen name={USER_DETAILS_SCREEN} component={UserDetailStack}/>
         </Drawer.Navigator>
     );
