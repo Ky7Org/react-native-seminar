@@ -14,15 +14,16 @@ import {
     LocationMarkerIcon,
     MailIcon,
 } from "react-native-heroicons/solid";
-import {NavigationProp, RouteProp, useNavigation} from "@react-navigation/native";
+import {NavigationProp, RouteProp} from "@react-navigation/native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {
     BUTTON_ADMIN,
     BUTTON_EDIT_PROFILE,
 } from "./constants";
-import {User} from "../../../../models/users.model";
 import {AuthContext} from "../../../../utils/auth.context";
 import {UPDATE_USER_SCREEN} from "../../../../constants";
+import 'intl';
+import 'intl/locale-data/jsonp/vi-VN';
 
 type IProps = {
     route: RouteProp<any>;
