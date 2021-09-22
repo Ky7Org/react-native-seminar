@@ -6,47 +6,68 @@ import {
     View,
 } from 'react-native';
 import {Formik} from 'formik';
-import indexCss from "./styles/index.css";
+import styles from "./styles/index.css";
 import {User} from "../../../models/users.model";
-import {CREATE_ACCOUNT_SCREEN, SOLID_WHITE_COLOR, USER_LIST_SCREEN} from "../../../constants";
+import {
+    CREATE_ACCOUNT_SCREEN,
+    MOCK_USERS,
+    SOLID_WHITE_COLOR,
+} from "../../../constants";
 import {
     CREATE_ACCOUNT_TEXT,
     DONT_HAVE_ACCOUNT_TEXT,
     EMAIL_TEXT,
-    EMAIL_VAR, INVALID_CREDENTIAL_TEXT,
-    IS_PASSWORD_SECURED, LOGIN_CAMEL_CASE_TEXT,
+    EMAIL_VAR,
+    INVALID_CREDENTIAL_TEXT,
+    IS_PASSWORD_SECURED,
+    LOGIN_CAMEL_CASE_TEXT,
     LOGIN_TEXT,
     PASSWORD_TEXT, PASSWORD_VAR
 } from "./constants/constant";
-import {checkLogin} from "../../../services/users.service";
 import { AuthContext } from '../../../utils/auth.context';
 import {useNavigation} from "@react-navigation/native";
 import {UsersContext} from "../../../utils/users.context";
+import {storeUser} from "../../../utils/users.storage";
 
 type IProps = {
 };
 
-const LoginScreen: React.FC<IProps> = (props: IProps) => {
+const LoginScreen: React.VFC<IProps> = (props: IProps) => {
     const users = useContext(UsersContext);
-    const authContext = useContext<any>(AuthContext);
+    const {setAuth} = useContext(AuthContext);
     const navigation = useNavigation<any>();
 
     const [isError, setIsError] = useState<boolean>(false);
 
+    const checkLogin = async ({email, password}: User) => {
+        const loginUser: User = MOCK_USERS.find(user => user.username === email) ?? MOCK_USERS[0];
+        if (loginUser.password === password) {
+            await storeUser(loginUser);
+        } else {
+            throw new Error();
+        }
+    };
+
+    const initialValues = {
+        email: '',
+        password: '',
+    };
+
+    const handleSubmit = (values) => {
+        checkLogin(values).then(() => {
+            setIsError(false);
+            setAuth({...users.filter(u => u.username === values.email)[0]});
+        }).catch(() => setIsError(true));
+    };
+
     return (
-        <Formik initialValues={{email: '', password: ''}}
-            onSubmit={values => {
-                checkLogin(values).then(() => {
-                    setIsError(false);
-                    authContext.setAuth({...users.filter(u => u.username === values.email)[0]});
-                }).catch(() => setIsError(true));
-            }}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({handleChange, handleBlur, handleSubmit, values}) => (
-                <View style={indexCss.container}>
-                    <View>
-                        <Text style={indexCss.headerContainer}>{LOGIN_CAMEL_CASE_TEXT}</Text>
+                <View style={styles.container}>
+                    <View style={styles.header}>
+                        <Text style={styles.headerText}>{LOGIN_CAMEL_CASE_TEXT}</Text>
                     </View>
-                    <View style={indexCss.containerForm}>
+                    <View style={styles.body}>
                         <TextInput
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -55,7 +76,7 @@ const LoginScreen: React.FC<IProps> = (props: IProps) => {
                             value={values.email}
                             placeholder={EMAIL_TEXT}
                             placeholderTextColor={SOLID_WHITE_COLOR}
-                            style={indexCss.input}
+                            style={styles.input}
                         />
                         <TextInput
                             autoCapitalize="none"
@@ -65,21 +86,21 @@ const LoginScreen: React.FC<IProps> = (props: IProps) => {
                             value={values.password}
                             placeholder={PASSWORD_TEXT}
                             placeholderTextColor={SOLID_WHITE_COLOR}
-                            style={indexCss.input}
+                            style={styles.input}
                             secureTextEntry={IS_PASSWORD_SECURED}
                         />
                         <View>
-                            <Text style={indexCss.textError}>{isError ? INVALID_CREDENTIAL_TEXT : ' '}</Text>
+                            <Text style={styles.textError}>{isError ? INVALID_CREDENTIAL_TEXT : ' '}</Text>
                         </View>
-                        <TouchableOpacity style={indexCss.signInButton} onPress={() => handleSubmit()}>
-                            <Text style={indexCss.textSignInButton}>{LOGIN_TEXT}</Text>
+                        <TouchableOpacity style={styles.buttonSignIn} onPress={() => handleSubmit()}>
+                            <Text style={styles.textSignInButton}>{LOGIN_TEXT}</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={indexCss.footerContainer}>
-                        <Text style={indexCss.textDontHaveAccount}>{DONT_HAVE_ACCOUNT_TEXT}</Text>
+                    <View style={styles.footer}>
+                        <Text style={styles.textDontHaveAccount}>{DONT_HAVE_ACCOUNT_TEXT}</Text>
                         <Text
                             onPress={() => navigation.push(CREATE_ACCOUNT_SCREEN)}
-                            style={indexCss.textCreateAccount}>
+                            style={styles.textCreateAccount}>
                             {CREATE_ACCOUNT_TEXT}
                         </Text>
                     </View>

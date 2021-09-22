@@ -22,7 +22,7 @@ export default StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
-    signInButton: {
+    buttonSignIn: {
         borderRadius: 20,
         padding: 10,
         elevation: 2,

@@ -4,14 +4,14 @@ import {DAINTREE_COLOR, SOLID_WHITE_COLOR, SPRING_GREEN_COLOR, TUNDORA_COLOR} fr
 
 export const styles = StyleSheet.create({
     bigCircle: {
-        ...tailwind('rounded-full absolute w-full h-full'),
+        ...tailwind('rounded-full absolute'),
         backgroundColor: DAINTREE_COLOR,
         width: 1015,
         height: 1090,
         top: -900,
         left: -300
     },
-    headerContainer: {
+    header: {
         ...tailwind('flex flex-row justify-between w-full mt-6'),
     },
     buttonAdmin: {

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         left: -300
 
     },
-    headerContainer: {
+    header: {
         ...tailwind('flex flex-row justify-between w-full mt-6'),
 
     },

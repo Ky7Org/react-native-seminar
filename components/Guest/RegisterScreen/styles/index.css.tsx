@@ -7,60 +7,67 @@ import {
 
 export const styles = StyleSheet.create({
     input: {
-        ...tailwind('w-11/12 h-14 pl-6 rounded-full border-2 mt-4 mb-2'),
+        ...tailwind('w-11/12 h-14 pl-6 font-bold rounded-full border-2 mt-4 mb-2'),
         backgroundColor: DAINTREE_COLOR,
         borderColor: SPRING_GREEN_COLOR,
         fontSize: 20,
-        fontWeight: 'bold',
         color: SOLID_WHITE_COLOR,
     },
     container: {
-        ...tailwind('flex mr-2 mt-28'),
+        ...tailwind('flex mt-28'),
         justifyContent: 'center',
-        flexDirection: 'column',
     },
     headerText: {
-        ...tailwind('font-bold ml-3 text-white mb-3'),
+        ...tailwind('font-bold text-white'),
         fontSize: 35,
     },
     textButtonAdmin: {
-        color: "white",
+        ...tailwind('font-bold text-white'),
         fontSize: 25,
-        fontWeight: 'bold',
         textAlign: 'center'
     },
     buttonCreate: {
-        ...tailwind('flex flex-row rounded-full mt-8 ml-3 h-14 w-11/12'),
+        ...tailwind('flex flex-row items-center rounded-full mt-8 mb-8 h-14 w-11/12'),
         backgroundColor: SPRING_GREEN_COLOR,
         justifyContent: "center",
-        alignItems: 'center',
         fontSize: 25,
     },
-    scrollView: {
+    baseContainer: {
         backgroundColor: DAINTREE_COLOR
     },
     header: {
-        marginLeft: 20
+        ...tailwind('flex flex-row mb-4 ml-6'),
     },
     body: {
-        ...tailwind('flex items-center'),
+        ...tailwind('flex items-center ml-2 mr-2'),
     },
     buttonCreateAccount: {
-        ...tailwind('flex flex-row items-center'),
+        ...tailwind('flex flex-row'),
         justifyContent: "center",
-        marginRight: 10
+    },
+    textFooterAlreadyHaveAccount: {
+        ...tailwind('flex flex-row items-center mt-8'),
     },
     textAlreadyHaveAccount: {
-      ...tailwind('mt-16 ml-8 text-white'),
+      ...tailwind('text-white'),
         fontSize: 20,
-        fontWeight: '600',
+        fontWeight: 'bold',
+    },
+    textHaveAccountSignIn: {
+        color: SPRING_GREEN_COLOR,
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     footer: {
-        ...tailwind('flex flex-row items-center my-6 mx-6 mt-10'),
+        ...tailwind('flex flex-col items-center'),
         justifyContent: 'center',
     },
     footerText: {
-        ...tailwind('text-white text-xs'),
+        ...tailwind('flex flex-row text-white text-xs mr-4 ml-4'),
+        flexWrap: 'wrap',
+    },
+    textTermsOfUseFooter: {
+        ...tailwind('text-white'),
         fontWeight: '600',
         fontSize: 14,
     }
