@@ -47,8 +47,8 @@ export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
     };
 
     useEffect(() => {
-        if (route.params.username) {
-            setUser(findUserByUsername(route.params.username));
+        if (route.params?.username) {
+            setUser(findUserByUsername(route.params?.username));
         } else {
             setUser({...auth});
         }
@@ -63,12 +63,8 @@ export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
             <View style={styles.bigCircle}/>
             <View style={tailwind('flex items-center')}>
                 <View style={styles.header}>
-                    <TouchableOpacity style={styles.buttonAdmin} onPress={() => {
-                        if (route.params.username) {
-                            navigation.goBack();
-                        }
-                    }}>
-                        <Text style={styles.textButtonAdmin}>{route.params.username ? 'Back' : BUTTON_ADMIN}</Text>
+                    <TouchableOpacity style={styles.buttonAdmin} onPress={() => route.params?.username ? navigation.goBack() : console.log('')}>
+                        <Text style={styles.textButtonAdmin}>{route.params?.username ? 'Back' : BUTTON_ADMIN}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonEdit} onPress={() => navigation.navigate(UPDATE_USER_SCREEN)}>
                         <Text style={styles.textButtonAdmin}>{BUTTON_EDIT_PROFILE}</Text>
