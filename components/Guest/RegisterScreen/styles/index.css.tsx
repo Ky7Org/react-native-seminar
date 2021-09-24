@@ -2,7 +2,9 @@ import {StyleSheet} from "react-native";
 import tailwind from "tailwind-rn";
 import {
     DAINTREE_COLOR,
-    SOLID_WHITE_COLOR, SPRING_GREEN_COLOR,
+    SOLID_WHITE_COLOR,
+    SPRING_GREEN_COLOR,
+    TORCH_RED_COLOR,
 } from "../../../../constants";
 
 export const styles = StyleSheet.create({
@@ -40,6 +42,11 @@ export const styles = StyleSheet.create({
     },
     body: {
         ...tailwind('flex items-center ml-2 mr-2'),
+    },
+    textError: {
+        color: TORCH_RED_COLOR,
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     buttonCreateAccount: {
         ...tailwind('flex flex-row'),

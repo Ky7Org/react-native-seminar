@@ -30,6 +30,7 @@ import {User} from "../../../models/users.model";
 import {UsersContext} from "../../../utils/users.context";
 import {Formik} from 'formik';
 import {EMAIL_VAR, PASSWORD_VAR, RE_PASSWORD_VAR} from "../LoginScreen/constants/constant";
+import tailwind from "tailwind-rn";
 
 type IProps = {};
 
@@ -38,6 +39,8 @@ export const RegisterUserScreen: React.VFC<IProps> = (props: IProps) => {
     const users = useContext<User[]>(UsersContext);
     const navigation = useNavigation();
     const [isError, setIsError] = useState<boolean>(false);
+    const [isPasswordNotMatched, setPasswordNotMatch] = useState<boolean>(false);
+    const [isUserExisted, setUserExisted] = useState<boolean>(false);
 
     const initialValues = {
         email: '',
@@ -45,7 +48,29 @@ export const RegisterUserScreen: React.VFC<IProps> = (props: IProps) => {
         rePassword: '',
     };
 
+    const checkUserExisted = ({username, email}) => {
+        if (users.filter(u => ((u.username === email) || (u.email === email)))[0]) {
+            setUserExisted(true);
+            setPasswordNotMatch(false);
+            return false;
+        }
+        return true;
+    };
+
+    const checkPasswordMatches = ({password, rePassword}) => {
+        if (password !== rePassword) {
+            setPasswordNotMatch(true);
+            setUserExisted(false);
+            return false;
+        }
+        return true;
+    };
+
     const handleSubmit = (values) => {
+        if (!checkUserExisted(values) || !checkPasswordMatches(values)) {
+            return;
+        }
+
         users.push({
             username: values.email,
             email: values.email,
@@ -102,6 +127,10 @@ export const RegisterUserScreen: React.VFC<IProps> = (props: IProps) => {
                                 secureTextEntry={true}
                                 placeholderTextColor={SOLID_WHITE_COLOR}
                             />
+                            <View style={tailwind('mt-4')}>
+                                {isUserExisted ? <Text style={styles.textError}>The e-mail is already taken!</Text> : <></>}
+                                {isPasswordNotMatched ? <Text style={styles.textError}>The password is not matched</Text> : <></>}
+                            </View>
                         </View>
                         <View style={styles.footer}>
                             <View style={styles.textFooterAlreadyHaveAccount}>
