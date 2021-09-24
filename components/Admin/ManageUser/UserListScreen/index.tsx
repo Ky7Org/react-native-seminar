@@ -16,7 +16,9 @@ import {SearchIcon} from "react-native-heroicons/solid";
 import {styles} from "./styles/index.css";
 import {UsersContext} from "../../../../utils/users.context";
 import {SOLID_WHITE_COLOR, USER_DETAILS_SCREEN} from "../../../../constants";
-import {NavigationProp, useNavigation} from "@react-navigation/native";
+import {NavigationProp} from "@react-navigation/native";
+import {User} from "../../../../models/users.model";
+
 type IProps = {
     navigation: NavigationProp<any>;
 };
@@ -27,23 +29,18 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
         navigation,
     } = props;
 
-    const users = useContext(UsersContext);
+    const users = useContext<User[]>(UsersContext);
+    const [search, setSearch] = useState<string>("");
+    const [searchResult, setSearchResult] = useState<User[]>([]);
 
     useEffect(() => {
-        setDataSource(users);
         setSearchResult(users);
     }, []);
 
-    const [search, setSearch] = useState("");
-    const [dataSource, setDataSource] = useState([]);
-    const [searchResult, setSearchResult] = useState([]);
-
-
-
-    const handleSearch = (searchValue) => {
+    const handleSearch = (searchValue: string) => {
         if (searchValue) {
             //search value is not blank
-            const newData = dataSource.filter((user) => {
+            const newData = users.filter((user) => {
                 const itemData = user.fullname
                     ? user.fullname.toUpperCase()
                     : ''.toUpperCase();
@@ -54,15 +51,15 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
             setSearch(searchValue);
         } else {
             //search value is blank
-            setSearchResult(dataSource);
+            setSearchResult(users);
             setSearch(searchValue);
         }
-    }
+    };
 
     const handleRenderUserDetail = (username: string) => {
-      navigation.navigate(USER_DETAILS_SCREEN, {
-          username: username,
-      });
+        navigation.navigate(USER_DETAILS_SCREEN, {
+            username: username,
+        });
     };
 
     const renderUser = ({item}) => (
@@ -72,15 +69,11 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
                     <View style={tailwind('flex-grow')}>
                         <View style={tailwind('border-2 rounded-full w-20 h-20')}>
                             <Image style={tailwind('rounded-full w-16 h-16 mx-2 my-2')}
-                                   source={require("../../../../assets/dead_pool.jpg")} />
+                                   source={require("../../../../assets/dead_pool.jpg")}/>
                         </View>
                         <View style={tailwind('flex -mt-16 ml-24')}>
-                            <Text style={tailwind('text-base text-black font-bold')}>
-                                {item.fullname}
-                            </Text>
-                            <Text>
-                                {item.role}
-                            </Text>
+                            <Text style={tailwind('text-base text-black font-bold')}>{item.fullname}</Text>
+                            <Text>{item.role}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -89,30 +82,38 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
     );
 
     const ListHeaderComponent: React.FC = () => {
-        return  <>
-            <View style={styles.bigCircle} />
+        return <>
+            <View style={styles.bigCircle}/>
             <View style={tailwind('flex items-center')}>
-            <View style={styles.header}>
-                <TouchableOpacity style={styles.buttonAdmin}>
-                    <Text style={styles.textButtonAdmin}>{BUTTON_ADMIN}</Text>
-                </TouchableOpacity>
+                <View style={styles.header}>
+                    <TouchableOpacity style={styles.buttonAdmin}>
+                        <Text style={styles.textButtonAdmin}>{BUTTON_ADMIN}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.searchSection}>
+                    <SearchIcon stroke={SOLID_WHITE_COLOR} size={31} style={tailwind('p-4 ml-8')}/>
+                    <TextInput
+                        autoFocus={true}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        multiline={false}
+                        blurOnSubmit={false}
+                        maxLength={250}
+                        onChangeText={(searchValue: string) => handleSearch(searchValue)}
+                        value={search}
+                        placeholder="Search"
+                        style={styles.input}
+                    />
+                </View>
             </View>
-            <View style={styles.searchSection}>
-                <SearchIcon stroke={SOLID_WHITE_COLOR} size={31} style={tailwind('p-4 ml-8')}/>
-                <TextInput
-                    onChangeText={(searchValue: string) => handleSearch(searchValue)}
-                    value={search}
-                    placeholder="Search"
-                    style={styles.input}
-                />
-            </View>
-        </View>
-            </>;
+        </>;
     }
 
     return (
         <SafeAreaView style={{flex: 1}}>
             <FlatList
+                keyboardDismissMode="none"
+                keyboardShouldPersistTaps="always"
                 bounces={false}
                 style={tailwind('flex bg-white')}
                 data={searchResult}

@@ -5,6 +5,7 @@ export const USER_DETAILS_SCREEN = "User Details"
 export const LOGIN_SCREEN  = "Login";
 export const CREATE_ACCOUNT_SCREEN = "Create account"
 export const USER_LIST_SCREEN = "User list"
+export const HOME_PAGE_USER_LIST_SCREEN = "User List Home Page";
 export const UPDATE_USER_SCREEN = "Update user";
 export const GLOBAL_DRAWER = "Global Drawer";
 
