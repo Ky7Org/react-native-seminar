@@ -18,6 +18,7 @@ import {UsersContext} from "../../../../utils/users.context";
 import {SOLID_WHITE_COLOR, USER_DETAILS_SCREEN} from "../../../../constants";
 import {NavigationProp} from "@react-navigation/native";
 import {User} from "../../../../models/users.model";
+import {AuthContext} from "../../../../utils/auth.context";
 
 type IProps = {
     navigation: NavigationProp<any>;
@@ -32,6 +33,7 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
     const users = useContext<User[]>(UsersContext);
     const [search, setSearch] = useState<string>("");
     const [searchResult, setSearchResult] = useState<User[]>([]);
+    const {auth} = useContext(AuthContext);
 
     useEffect(() => {
         setSearchResult(users);
@@ -87,7 +89,7 @@ export const UserListScreen: React.FC<IProps> = (props: IProps) => {
             <View style={tailwind('flex items-center')}>
                 <View style={styles.header}>
                     <TouchableOpacity style={styles.buttonAdmin}>
-                        <Text style={styles.textButtonAdmin}>{BUTTON_ADMIN}</Text>
+                        <Text style={styles.textButtonAdmin}>{auth.role !== 'Administrator' ? 'User' : BUTTON_ADMIN}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.searchSection}>
