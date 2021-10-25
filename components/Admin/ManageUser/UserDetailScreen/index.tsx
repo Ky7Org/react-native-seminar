@@ -14,7 +14,7 @@ import {
     LocationMarkerIcon,
     MailIcon,
 } from "react-native-heroicons/solid";
-import {NavigationProp, RouteProp} from "@react-navigation/native";
+import {NavigationProp, RouteProp, useFocusEffect, useIsFocused} from "@react-navigation/native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {
     BUTTON_ADMIN,
@@ -41,18 +41,29 @@ export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
     const {auth} = useContext(AuthContext);
     const users = useContext(UsersContext);
     const [user, setUser] = useState<User>({} as User);
+    const isFocused = useIsFocused();
 
     const findUserByUsername = (username: string) => {
         return users.filter(u => u.username === username)[0];
     };
 
-    useEffect(() => {
+    const getInitialData = async () => {
         if (route.params?.username) {
             setUser(findUserByUsername(route.params?.username));
         } else {
             setUser({...auth});
         }
-    }, []);
+    };
+
+    useEffect(() => {
+        if (isFocused) {
+            if (route.params?.username) {
+                setUser(findUserByUsername(route.params?.username));
+            } else {
+                setUser(findUserByUsername(auth.username));
+            }
+        }
+        }, [isFocused]);
 
     return (
         <ScrollView
@@ -66,7 +77,9 @@ export const UserDetailScreen: React.FC<IProps> = (props: IProps) => {
                     <TouchableOpacity style={styles.buttonAdmin} onPress={() => route.params?.username ? navigation.goBack() : console.log('')}>
                         <Text style={styles.textButtonAdmin}>{route.params?.username ? 'Back' : BUTTON_ADMIN}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonEdit} onPress={() => navigation.navigate(UPDATE_USER_SCREEN)}>
+                    <TouchableOpacity style={styles.buttonEdit} onPress={() => navigation.navigate(UPDATE_USER_SCREEN, {
+                        email: user.email,
+                    })}>
                         <Text style={styles.textButtonAdmin}>{BUTTON_EDIT_PROFILE}</Text>
                     </TouchableOpacity>
                 </View>
