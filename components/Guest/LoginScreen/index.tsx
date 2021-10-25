@@ -40,8 +40,8 @@ const LoginScreen: React.VFC<IProps> = (props: IProps) => {
     const [isError, setIsError] = useState<boolean>(false);
 
     const checkLogin = async ({email, password}: User) => {
-        const loginUser: User = MOCK_USERS.find(user => user.username === email) ?? MOCK_USERS[0];
-        if (loginUser.password === password) {
+        const loginUser: User = MOCK_USERS.find(user => user.username === email);
+        if (loginUser && loginUser.password === password) {
             await storeUser(loginUser);
         } else {
             throw new Error();
